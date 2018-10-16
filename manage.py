@@ -28,6 +28,8 @@ blueprints = (
 for bp in blueprints:
     app.register_blueprint(bp)
 
+print (app.static_folder)
+
 #sentry init
 if getMode() == 'live':
     sentryLogger()

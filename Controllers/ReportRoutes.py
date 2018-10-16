@@ -12,7 +12,7 @@ mod = Blueprint('report_routes', __name__)
 def retrieve_report():
 	file = request.files['file']
 	report_id = ReportID().generate()
-	temp_file_path = f"{appConfig['ROOT_PATH']}/misc/tmp/{report_id}.txt"
+	temp_file_path = "{}/misc/tmp/{}.txt".format(appConfig['ROOT_PATH'], report_id)
 
 	file.save(temp_file_path)
 	genome_file = ReportFile(file=temp_file_path).load_file()
