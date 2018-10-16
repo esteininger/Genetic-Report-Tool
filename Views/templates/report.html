@@ -1,0 +1,45 @@
+{% include 'fixed/head.html' %}
+
+<style>
+  .tabs-header {
+    padding-bottom: 0em;
+  }
+</style>
+
+<body>
+  {% include 'fixed/nav.html' %}
+
+  <div class="section md-padding bg-grey">
+    <div class="container">
+      <div class="card-box">
+        {% if report_dict %}
+          {% include 'modules/report/valid_report.html' %}
+        {% else %}
+          {% include 'modules/report/invalid_report.html' %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% include 'fixed/footer.html' %}
+</body>
+
+</html>
+{% include 'fixed/foot.html' %}
+
+<script>
+  function updateNav() {
+    if (reportJSON) {
+      //report exists in session, change URL to report ID
+      var report_id = reportJSON.report_id
+      var elem = $('#nav-report-cta')
+      elem.attr("href", `/report/${report_id}`)
+      elem.text('My Report')
+      setCookie('report_id', report_id, 2)
+    } else {
+      eraseCookie('report_id');
+    }
+  }
+
+  updateNav();
+
+</script>

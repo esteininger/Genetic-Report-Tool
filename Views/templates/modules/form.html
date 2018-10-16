@@ -1,0 +1,86 @@
+<div id="" class="section md-padding bg-grey">
+  <div class="container">
+    <div class="card-box">
+      <div class="upload-tabs tabs-header">
+        <h4 class="header-title m-t-0 m-b-30" style="margin-bottom: 5px;">Select a Source to Generate a Report</h4>
+        <p>Your files are never <a href="https://meports.com/privacy">stored</a> on our servers.</p>
+      </div>
+      <ul class="nav nav-tabs upload-tabs tabs-bordered">
+        <li class="active">
+          <a href="ui-tabs.html#tab-23andme" data-toggle="tab" aria-expanded="true">
+            <span class="visible-xs"><i class="fa fa-home"></i></span>
+            <span class="hidden-xs"><img src="../static/img/external/23andme.png" /></span>
+          </a>
+        </li>
+        <li class="">
+          <a href="ui-tabs.html#tab-ancestry" data-toggle="tab" aria-expanded="false">
+            <span class="visible-xs"><i class="fa fa-user"></i></span>
+            <span class="hidden-xs"><img src="../static/img/external/ancestry.png" /></span>
+          </a>
+        </li>
+        <li class="">
+          <a href="ui-tabs.html#tab-ftdna" data-toggle="tab" aria-expanded="false">
+            <span class="visible-xs"><i class="fa fa-envelope-o"></i></span>
+            <span class="hidden-xs"><img src="../static/img/external/ftdna.png" /></span>
+          </a>
+        </li>
+        <li class="">
+          <a href="ui-tabs.html#tab-helix" data-toggle="tab" aria-expanded="false">
+            <span class="visible-xs"><i class="fa fa-cog"></i></span>
+            <span class="hidden-xs"><img src="../static/img/external/helix.png" /></span>
+          </a>
+        </li>
+        <li class="">
+          <a href="ui-tabs.html#tab-other" data-toggle="tab" aria-expanded="false">
+            <span class="visible-xs"><i class="fa fa-cog"></i></span>
+            <span class="hidden-xs tab-text">Other</span>
+          </a>
+        </li>
+      </ul>
+      <div class="upload-tabs tab-content">
+        <div class="upload-tabs tab-pane active" id="tab-23andme">
+          <h4 class="m-t-0 header-title"><b>23AndMe</b></h4>
+          <div class="upload-holder">
+            <form id="upload-report-form" method="post" enctype="multipart/form-data">
+              <label class="btn btn-custom">
+                <span class="fa fa-upload"></span> Upload
+                <input type="file" style="display: none;" name="file">
+              </label>
+            </form>
+            <p style="margin-top:1em;">
+              See a sample report <a href="#">here</a>
+              <br />
+              Don't have a 23AndMe genome file? Download yours <a href="https://customercare.23andme.com/hc/en-us/articles/212196868-Accessing-and-Downloading-Your-Raw-Data">here</a>
+            </p>
+          </div>
+          <div class="progress-holder hidden"></div>
+          <div class="results-holder hidden"></div>
+        </div>
+        <div class="upload-tabs tab-pane" id="tab-ancestry">
+          <h4 class="m-t-0 header-title"><b>Ancestry</b></h4>
+          <p>
+            We're still working on Ancestry integration. Tell our engineers to hurry up <a href="mailto:info@meports.com">here</a>.
+          </p>
+        </div>
+        <div class="upload-tabs tab-pane" id="tab-ftdna">
+          <h4 class="m-t-0 header-title"><b>FamilyTree DNA</b></h4>
+          <p>
+            We're still working on a FamilyTree DNA integration. Tell our engineers to hurry up <a href="mailto:info@meports.com">here</a>.
+          </p>
+        </div>
+        <div class="upload-tabs tab-pane" id="tab-helix">
+          <h4 class="m-t-0 header-title"><b>Helix</b></h4>
+          <p>
+            We're still working on a Helix integration. Tell our engineers to hurry up <a href="mailto:info@meports.com">here</a>.
+          </p>
+        </div>
+        <div class="upload-tabs tab-pane" id="tab-other">
+          <h4 class="m-t-0 header-title"><b>Other</b></h4>
+          <p>
+            What else?
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

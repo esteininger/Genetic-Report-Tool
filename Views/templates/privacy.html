@@ -1,0 +1,94 @@
+{% include 'fixed/head.html' %}
+
+<style>
+	#privacy-policy-content {
+		background-color: white;
+	}
+
+	#nav.nav-transparent {
+		background: #414357;
+	}
+
+	.grayHeader {
+		font-size: 25px;
+		color: #868F9B;
+	}
+</style>
+
+<body>
+
+	<header>
+
+		{% include 'fixed/nav.html' %}
+
+	</header>
+
+
+	<div id="privacy-policy-content" class="section md-padding">
+		<h2 style="text-align:center">Privacy Policy</h2>
+
+		<div class="container">
+			<div class="row">
+				<div id='ppBody'>
+					<p>Privacy is important to us. We want to do it right. The system was designed to maximize your privacy. But <a href="https://Meports.com" title="Meports">Meports</a>, like <a href="https://www.SNPedia.com/index.php/SNPedia" title="SNPedia">SNPedia</a>
+						and our understanding of genetics, is still a work in progress.
+					</p>
+					<p>After 45 days Meports deletes your Meports report.
+					</p>
+					<p>At no time is your DNA data shared - or sold - to any external party, period. We also do not sell any products like vitamins or supplements.
+
+					</p>
+					<p>As of August 28 2017, when you purchase a Meports report you can choose whether to create a password-protected account (default) or continue without creating an account.
+
+					</p>
+					<p>If you choose not to create an account, after 24 hours Meports deletes all information about your raw genome. All raw genomes uploaded before August 28 2017 were deleted. If you create an account, Meports will store your raw genome,
+						until such time that you delete it from Meports. You can log into your account at any time, and for as long as your raw genome is stored on Meports, you can re-generate the Meports report for free, gaining the most up-to-date data,
+						or delete your raw genome permanently.
+
+					</p>
+					<p>When you look at SNPedia with your webbrowser, the pages you've requested are part of the SNPedia webserver logs. This makes it possible to match a set of genotypes to a given IP address. These logs are not kept long term; typically they are
+						removed after 1 month, however this is not automated.
+					</p>
+					<p>When using <a rel="nofollow" class="external free" href="/">https://Meports.com</a> you are uploading your genome to our central website. All traffic is encrypted via https and your upload is retained in a well protected location. If a
+						genome is uploaded, but the user does not continue and generate a report, the uploaded genome is automatically deleted after 24 hours. As soon as a report has been generated (typically 10 minutes) the uploaded genome is deleted, unless an
+						account was created. If you've imported directly from 23andMe the imported genomes are not deleted when your report was generated, but are instead retained for 24 hours, unless an account was created.
+
+					</p>
+					<p>We do not claim any ownership rights in your genome and it belongs to you only.
+
+					</p>
+					<p>By uploading your genome you grant us a temporary, limited, revocable, royalty-free, world-wide license to process and use your genome for the purpose of providing you with the service. i.e., for generating and re-generating reports, and if
+						you created an account and stored your genome, also to use it with new genetic features of the service we may develop in the future, at no additional cost to you. You may delete your genome at any time.
+
+					</p>
+					<p>If you've made a payment to use Meports, you will see that your email address was provided by the payment processor (<a rel="nofollow" class="external text" href="https://www.stripe.com">Stripe.com</a>). This email address is used to
+						email you a link to your Meports report. You may choose to change this to a different address, or to remove the email address. If you do not remove your email address, you will be mailed a link to your completed report. This is probably
+						the weakest link in the security, so you might wish to blank your email, but it makes it much more likely that you will lose the ability to retrieve your completed report.
+					</p>
+					<p>Since most users will eventually click through from their <a href="/index.php/Meports" title="Meports">Meports</a> report into <a href="/index.php/SNPedia" title="SNPedia">SNPedia</a>, and use their web browser to look at the
+						full details of some of their genotypes, this too leaks information about your genotypes and IP address into server logs.
+					</p>
+					<p>For this reason, in time we hope to scrub the ip/genotypes from the SNPedia logs. But <a href="/index.php/User:Cariaso" title="User:Cariaso">I</a> am a strong believer in <a rel="nofollow" class="external text" href="http://www.catb.org/~esr/writings/cathedral-bazaar/cathedral-bazaar/ar01s04.html">release
+							early, release often</a> and Meports wouldn't exist at all if I had to wait until every case was covered.
+					</p>
+					<p>You can improve security by running Meports behind <a rel="nofollow" class="external text" href="https://www.torproject.org/">Tor</a> and paying via bitcoin or a prepaid credit card. For the <b>extremely security conscious</b>,
+						Meports may <b>not yet</b> be for you. If you can't wait, consider doctoring a few versions of your genotype file, and running Meports a few times, from various coffee shops in foreign countries. You alone will know which file was
+						real, and the rest will serve as <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Chaffing_and_winnowing">chaff</a>. Other possibilities exist, and your comments on this important topic are welcome.
+					</p>
+					<p>These technical solutions are still being formulated, in line with the discussions raised in recent articles ([<a class="external mw-magiclink-pmid" rel="nofollow" href="//www.ncbi.nlm.nih.gov/pubmed/18769715?dopt=Abstract">PMID 18769715</a>])
+						and by the NIH and Wellcome Trust.
+					</p>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+	{% include 'fixed/footer.html' %}
+</body>
+
+</html>
+{% include 'fixed/foot.html' %}

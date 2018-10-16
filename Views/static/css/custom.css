@@ -1,0 +1,205 @@
+.hidden {
+    display: none;
+}
+
+.video_btn.hero {
+    display: block;
+    width: 7rem;
+    height: 7rem;
+    padding: 0;
+    border-radius: 100rem;
+    border-width: 2px;
+    border-color: rgba(110, 110, 110, 0.9);
+    border-style: solid;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -13.5rem;
+    margin-left: -3.5rem;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.video_btn.hero:hover,
+.video_btn.hero:focus {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.video_btn .fa-play {
+    font-size: 30px !important;
+    color: white !important;
+    margin-top: 25%;
+    margin-left: 10%;
+}
+
+
+.img-responsive.product-screenshot {
+  /* max-width:110%; */
+}
+
+.cta-button {
+  background-color: #42bfc2 !important;
+  color: #fff !important;
+  padding: 0.5em 1.5em !important;
+  /* border-radius: 30px; */
+}
+
+.main-nav .cta-button {
+  margin-top: 8px !important;
+}
+
+#connect {
+  margin: 0;
+  padding: 45px 0 25px;
+  background-color: #41c0c3;
+  padding-bottom:4em;
+}
+
+#footer section.footer-nav {
+  padding-top:3em;
+}
+
+#footer section.footer-nav .company .hed, #footer section.footer-nav .company li a{
+    color: #a8a1b2;
+}
+
+#footer section.footer-nav a {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+#footer .hed {
+    font-size: 15px;
+    margin-bottom: .5em;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#footer ul.legal {
+  margin-top: 4em;
+}
+
+#connect .submit-button {
+  font-size: 15px;
+  padding: 0.5em 1.5em !important;
+}
+
+.bg-darker {
+  margin: 0;
+  background: #414358;
+  font-size: 14px;
+}
+#connect .medium img {
+  width:10em;
+}
+
+.navbar-left {
+  padding-left: 1em;
+}
+
+.welcome_area_thumb {
+  padding-bottom:1em;
+}
+
+.how-it-works-icon {
+  max-width:10em;
+}
+
+.about h3 {
+  padding-top:1em;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+#footer ul.legal {
+  display:inline;
+  padding-left:1em;
+}
+
+#footer p.made-in{
+  float:right;
+  padding-right:1em;
+}
+
+#how-it-works h3 {
+  font-weight:500;
+  font-size:22px;
+}
+
+.newsletter-button {
+  color: #ffffff;
+  background-color: #414357;
+  border-color: #414357;
+}
+.features-subheader {
+  font-weight: 900;
+  font-size: 16px;
+}
+
+.main-nav li a {
+  font-size:16px;
+}
+
+.card-box {
+  border: 2px solid #f3f3f3;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  background-clip: padding-box;
+  margin-bottom: 20px;
+  background-color: #fff
+}
+
+.card-box, .wrapper-md {
+    padding: 20px;
+}
+
+.tabs-bordered li a, .tabs-bordered li a:hover, .tabs-bordered li a:focus {
+    background-color: inherit;
+}
+
+.nav-tabs img, .tab-text{
+  filter: saturate(0%);
+  opacity: 0.6;
+  width:10em !important;
+}
+
+.nav-tabs>li.active {
+  background-color: rgb(244, 246, 247);
+  border-radius: 7px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  background-color: inherit !important;
+  border-radius: 7px;
+}
+
+.nav-tabs>li.active>a>span>img, .nav-tabs>li.active>a>span{
+  filter: saturate(100%);
+}
+
+.tab-content {
+  background-color: rgb(244, 246, 247);
+  padding: 2em;
+}
+
+.btn {
+    border-radius: 2px;
+    padding: 6px 14px;
+}
+
+.group-span-filestyle  .fa{
+      padding-right: .7em;
+}
+
+.tabs-header{
+  padding-bottom:1em;
+}
+
+.tab-text{
+  font-size: 26px;
+}
+
+.fa-spinner{
+  font-size: 34px;
+  color: #41c0c3;
+}
