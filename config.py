@@ -32,7 +32,7 @@ sessionKey = 'wdjhKUYhdajsKJY2398asdgKJH'
 secretKey = 'akshdjasdGHJsslkgajh'
 sentryDSN = 'https://4f3fb0408670420e8a08986d353edfd2:966054ed6ba840ba99442b9db89f3c43@sentry.io/287805'
 
-
+ 
 def getMode():
     server = str(os.path.realpath('.'))
     if "ethan" in server:
