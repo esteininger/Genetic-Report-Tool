@@ -38,6 +38,22 @@ function buildTableStr(){
   });
 };
 
+function initDeleteReportButton(){
+  $("#delete-report-button").click(function(e) {
+      e.preventDefault();
+      $.ajax({
+          type: "DELETE",
+          url: `/report/${reportJSON.report_id}`,
+          success: function(result) {
+            location.href = `/`
+          },
+          error: function(result) {
+              toastr['error'](result.message)
+          }
+      });
+  });
+};
+
 // $(planJSON).each(function(key, value) {
 //     planLabels.push(this['symbol'])
 //     planData.push( (parseFloat(this['percent']) * 100).toFixed(2) )
@@ -54,4 +70,5 @@ function buildTableStr(){
 //wrap everything with onload because this is being run before jQuery init
 window.onload = function(){
   buildTableStr();
+  initDeleteReportButton();
 }

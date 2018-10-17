@@ -24,6 +24,8 @@ def retrieve_report():
 
 		else:
 			ReportID().insert(report_id)
+			print(report_id)
+			print (genome_file)
 			report_build = ReportBuild(genome_file=genome_file)
 
 			master_response_list = []
@@ -32,6 +34,7 @@ def retrieve_report():
 
 			for tag in tags:
 				db_base_query = report_build.base_query(collection='snps', query=tag, mag=mag)
+				print (db_base_query)
 				db_base_query['tag'] = tag
 				file_to_db_comparison_result = report_build.generate_report(mag, db_base_query)
 				master_response_list += file_to_db_comparison_result
