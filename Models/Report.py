@@ -107,7 +107,7 @@ class ReportBuild:
 					db_geno_user_match = self.match_gene(db_rsid, db_geno)
 					# print (f"db_geno_user_match:{db_geno_user_match}")
 					if db_geno_user_match and db_gene['magnitude'] >= mag:
-						print(f"CONDITIONAL:{db_geno_user_match}")
+						print("CONDITIONAL:{}".format(db_geno_user_match))
 						j = {}
 						j['rsid'] = db_rsid
 						j['geno'] = db_geno
@@ -116,6 +116,6 @@ class ReportBuild:
 						j['summary'] = db_gene['summary']
 						j['repute'] = db_gene['repute']
 						j['tag'] = db_snp['tags']
-						print(f"j:{j}")
+						print("j:{}".format(j))
 						base_list.append(j)
 		return base_list
