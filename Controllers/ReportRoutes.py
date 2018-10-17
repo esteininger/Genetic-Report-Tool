@@ -28,7 +28,7 @@ def retrieve_report():
 
 			master_response_list = []
 			tags = [{"tags":"acmg"}]
-			mag = 1
+			mag = 3
 
 			for tag in tags:
 				db_base_query = report_build.base_query(collection='snps', query=tag, mag=mag)
@@ -61,12 +61,14 @@ def retrieve_report():
 @mod.route('/report/<report_id>', methods=['GET', 'DELETE'])
 def return_report(report_id):
 	report_db_init = ReportDB(collection='reports')
+
+	for_who = request.args.get('for', default=None, type=str)
 	query = {"report_id":report_id}
 
 	if request.method == 'GET':
 		try:
 			report_dict = report_db_init.search_db_one(query)
-			return render_template("report.html", report_dict=report_dict)
+			return render_template("report.html", report_dict=report_dict, for_who=for_who)
 		except Exception as e:
 			return render_template("report.html")
 

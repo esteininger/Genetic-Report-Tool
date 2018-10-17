@@ -1,0 +1,64 @@
+<div class="tabs-header">
+  <h4 class="header-title m-t-0 m-b-30" style="margin-bottom: 5px;">User's Report from <span id="report-creation-time"></span>:</h4>
+  <p><strong>Note:</strong> This link will be permanently removed 48 hours from its' creation date.
+    <ul class="nav nav-tabs tabs-bordered">
+      <li class="active">
+        <a href="ui-tabs.html#acmg" data-toggle="tab" aria-expanded="true">
+          <span class="visible-xs"><i class="fa fa-home"></i></span>
+          <span class="hidden-xs">ACMG</span>
+        </a>
+      </li>
+      <li class="">
+        <a href="ui-tabs.html#noteworthy" data-toggle="tab" aria-expanded="true">
+          <span class="visible-xs"><i class="fa fa-home"></i></span>
+          <span class="hidden-xs">Noteworthy</span>
+        </a>
+      </li>
+      <li class="">
+        <a href="ui-tabs.html#beneficial" data-toggle="tab" aria-expanded="true">
+          <span class="visible-xs"><i class="fa fa-home"></i></span>
+          <span class="hidden-xs">Beneficial</span>
+        </a>
+      </li>
+</div>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="acmg">
+    <h4 class="m-t-0 header-title"><b>ACMG</b></h4>
+    <p class="text-muted font-13 m-b-20">
+      Your Genome has been cross referenced with the American Council of Medical Genomics listing of "actionable genes". Review this list <a target="_blank" href="https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/">here</a>.
+    </p>
+    <div class="table-responsive">
+      <table class="table m-0">
+        <thead>
+          <tr>
+            <th>Gene</th>
+            <th>Magnitude</th>
+            <th>Description</th>
+            <th>SNP</th>
+            <th>Allele</th>
+          </tr>
+        </thead>
+        <tbody id="acmg-tbody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="tab-pane" id="noteworthy">
+    <h4 class="m-t-0 header-title"><b>Noteworthy</b></h4>
+    <p>
+      Not ready yet!
+    </p>
+  </div>
+  <div class="tab-pane" id="beneficial">
+    <h4 class="m-t-0 header-title"><b>Beneficial</b></h4>
+    <p>
+      Not ready yet!
+    </p>
+  </div>
+</div>
+
+<script type="text/javascript" src="../static/js/report.js"></script>
+<script>
+  var reportJSON = JSON.parse('{{report_dict | tojson | safe }}')
+</script>

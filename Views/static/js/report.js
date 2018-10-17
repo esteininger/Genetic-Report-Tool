@@ -61,14 +61,15 @@ function initDeleteReportButton(){
 // });
 
 
-// function initCreationTimeVar(){
-//   var creationDateVar = $('#report-creation-time');
-//
-//   creationDateVar.text(moment.unix(creationEpoch).format('dddd, MMMM Do, YYYY h:mm:ss A'))
-// }
+function initCreationTimeVar(){
+  var creationDateVar = $('#report-creation-time');
+
+  creationDateVar.text(moment.unix(reportJSON.timestamp).format('dddd, MMMM Do, YYYY h:mm:ss A'))
+}
 
 //wrap everything with onload because this is being run before jQuery init
 window.onload = function(){
   buildTableStr();
   initDeleteReportButton();
+  initCreationTimeVar();
 }
