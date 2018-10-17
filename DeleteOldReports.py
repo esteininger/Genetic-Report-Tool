@@ -1,3 +1,5 @@
+#!/usr/bin/python3.6
+
 from Utilities.Database import mongoDBConnect
 from time import time
 
