@@ -10,41 +10,46 @@ mod = Blueprint('report_routes', __name__)
 
 @mod.route('/api/report/generate', methods=['POST'])
 def retrieve_report():
-	file = request.files['file']
-	report_id = ReportID().generate()
-	temp_file_path = "{}/misc/tmp/{}.txt".format(appConfig['ROOT_PATH'], report_id)
+	try:
+		file = request.files['file']
+		report_id = ReportID().generate()
+		temp_file_path = "{}/misc/tmp/{}.txt".format(appConfig['ROOT_PATH'], report_id)
 
-	file.save(temp_file_path)
-	genome_file = ReportFile(file=temp_file_path).load_file()
-	os.remove(temp_file_path)
+		file.save(temp_file_path)
+		genome_file = ReportFile(file=temp_file_path).load_file()
+		os.remove(temp_file_path)
 
-	if not genome_file:
-		return error_response('invalid file')
+		if not genome_file:
+			return error_response('invalid file')
 
-	else:
-		ReportID().insert(report_id)
-		report_build = ReportBuild(genome_file=genome_file)
+		else:
+			ReportID().insert(report_id)
+			report_build = ReportBuild(genome_file=genome_file)
 
-		master_response_list = []
-		tags = [{"tags":"acmg"}]
-		mag = 1
+			master_response_list = []
+			tags = [{"tags":"acmg"}]
+			mag = 1
 
-		for tag in tags:
-			db_base_query = report_build.base_query(collection='snps', query=tag, mag=mag)
-			db_base_query['tag'] = tag
-			file_to_db_comparison_result = report_build.generate_report(mag, db_base_query)
-			master_response_list += file_to_db_comparison_result
+			for tag in tags:
+				db_base_query = report_build.base_query(collection='snps', query=tag, mag=mag)
+				db_base_query['tag'] = tag
+				file_to_db_comparison_result = report_build.generate_report(mag, db_base_query)
+				master_response_list += file_to_db_comparison_result
 
-		report = {}
-		report['report_dict'] = master_response_list
-		report['timestamp'] = time()
-		report['report_id'] = report_id
+			report = {}
+			report['report_dict'] = master_response_list
+			report['timestamp'] = time()
+			report['report_id'] = report_id
 
-		session['report_id'] = report_id
+			session['report_id'] = report_id
 
-		ReportDB(collection='reports').update(query={"report_id":report_id}, updated_dict=report)
+			ReportDB(collection='reports').update(query={"report_id":report_id}, updated_dict=report)
 
-		return success_response(report['report_id'])
+			return success_response(report['report_id'])
+			
+		except Exception as e:
+			print (e)
+			return error_response(e)
 
 @mod.route('/report/<report_id>', methods=['GET', 'DELETE'])
 def return_report(report_id):
