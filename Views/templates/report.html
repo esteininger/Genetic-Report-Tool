@@ -36,7 +36,7 @@
 function updateNav(){
   var elem = $('#nav-report-cta')
   //does url parameter for_who exist?
-  if ('{{for_who}}') {
+  if ('{{for_who}}' != 'None') {
     console.log('{{for_who}}')
     elem.attr("href", `/`)
     elem.text('Integrate Today')

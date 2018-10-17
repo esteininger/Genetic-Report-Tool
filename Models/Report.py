@@ -95,17 +95,19 @@ class ReportBuild:
 	def generate_report(self, mag, db_base_query):
 		#run inside a thread and output progress bar as event stream
 		base_list = []
-		current_count = 0
-
 		for db_snp in db_base_query['response']:
 			db_rsid = db_snp['rsid']
 			db_rsid_user_match = self.match_rsid(db_rsid)
-
+			# print(f"db_rsid_user_match:{db_rsid_user_match}")
 			if db_rsid_user_match:
+				# print(f"db_rsid_user_match_CONDITIONAL:{db_rsid_user_match}")
 				for db_gene in db_snp['genes']:
+					# print(f"DB_gene CONDITIONAL{db_gene}")
 					db_geno = db_gene['gene']
 					db_geno_user_match = self.match_gene(db_rsid, db_geno)
+					# print (f"db_geno_user_match:{db_geno_user_match}")
 					if db_geno_user_match and db_gene['magnitude'] >= mag:
+						print(f"CONDITIONAL:{db_geno_user_match}")
 						j = {}
 						j['rsid'] = db_rsid
 						j['geno'] = db_geno
@@ -114,5 +116,6 @@ class ReportBuild:
 						j['summary'] = db_gene['summary']
 						j['repute'] = db_gene['repute']
 						j['tag'] = db_snp['tags']
+						print(f"j:{j}")
 						base_list.append(j)
 		return base_list

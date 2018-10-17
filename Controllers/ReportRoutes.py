@@ -34,8 +34,6 @@ def retrieve_report():
 				db_base_query = report_build.base_query(collection='snps', query=tag, mag=mag)
 				db_base_query['tag'] = tag
 				file_to_db_comparison_result = report_build.generate_report(mag, db_base_query)
-				print ('results...')
-				print (file_to_db_comparison_result)
 				master_response_list += file_to_db_comparison_result
 
 			report = {}
@@ -47,7 +45,6 @@ def retrieve_report():
 
 			try:
 				ReportDB(collection='reports').update(query={"report_id":report_id}, updated_dict=report)
-				print ('uploaded')
 			except Exception as e:
 				print (e)
 				pass
