@@ -46,10 +46,10 @@ def retrieve_report():
 			ReportDB(collection='reports').update(query={"report_id":report_id}, updated_dict=report)
 
 			return success_response(report['report_id'])
-			
-		except Exception as e:
-			print (e)
-			return error_response(e)
+
+	except Exception as e:
+		print (e)
+		return error_response(e)
 
 @mod.route('/report/<report_id>', methods=['GET', 'DELETE'])
 def return_report(report_id):
