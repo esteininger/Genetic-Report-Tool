@@ -22,7 +22,9 @@ class ReportDB:
 		return self.mongo_connect().insert(inserted_dict)
 
 	def delete_one(self, query):
-		return self.mongo_connect().delete_one(query)
+		#keep it
+		if not self.search_db_one(query)['stay']:
+			return self.mongo_connect().delete_one(query)
 
 	def update(self, query, updated_dict):
 		return self.mongo_connect().update_one(query, {"$set": updated_dict}, upsert=False)

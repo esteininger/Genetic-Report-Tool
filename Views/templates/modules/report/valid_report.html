@@ -56,8 +56,11 @@
   </div>
 </div>
 <div style="padding-top:1em;">
+  <button id="send-to-button" class="btn btn-info waves-effect w-md waves-light m-b-5"> <i class="fa fa-envelope m-r-5"></i> <span>Get an Expert Opinion</span> </button>
   <button id="delete-report-button" class="btn btn-danger waves-effect w-md waves-light m-b-5"> <i class="fa fa-trash m-r-5"></i> <span>Delete Forever</span> </button>
 </div>
+
+{% include 'modules/modals.html' %}
 
 <script type="text/javascript" src="../static/js/report.js"></script>
 <script>

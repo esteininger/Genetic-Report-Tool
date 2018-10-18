@@ -28,7 +28,7 @@ def retrieve_report():
 
 			master_response_list = []
 			tags = [{"tags":"acmg"}]
-			mag = 3
+			mag = 1
 
 			for tag in tags:
 				db_base_query = report_build.base_query(collection='snps', query=tag, mag=mag)

@@ -54,6 +54,13 @@ function initDeleteReportButton(){
   });
 };
 
+function initSendToButton(){
+  $("#send-to-button").click(function(e) {
+      e.preventDefault();
+      $('#for-who-modal').modal('toggle');
+  });
+}
+
 // $(planJSON).each(function(key, value) {
 //     planLabels.push(this['symbol'])
 //     planData.push( (parseFloat(this['percent']) * 100).toFixed(2) )
@@ -63,12 +70,19 @@ function initDeleteReportButton(){
 
 function initCreationTimeVar(){
   var creationDateVar = $('#report-creation-time');
+  var momentDate = moment.unix(reportJSON.timestamp).format('dddd, MMMM Do, YYYY h:mm:ss A')
+  if (momentDate == 'Invalid date'){
+    creationDateVar.text('the beginning...')
+  }
+  else{
+    creationDateVar.text(momentDate)
+  }
 
-  creationDateVar.text(moment.unix(reportJSON.timestamp).format('dddd, MMMM Do, YYYY h:mm:ss A'))
 }
 
 //wrap everything with onload because this is being run before jQuery init
 window.onload = function(){
+  initSendToButton();
   buildTableStr();
   initDeleteReportButton();
   initCreationTimeVar();
