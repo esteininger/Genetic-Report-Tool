@@ -137,6 +137,13 @@ function initCreationTimeVar(timestamp) {
   var momentDate = moment.unix(timestamp).format('dddd, MMMM Do, YYYY h:mm:ss A')
   if (momentDate == 'Invalid date') {
     creationDateVar.text('the beginning...')
+
+    var elem = $('#nav-report-cta')
+    
+    elem.attr("href", `/report/${REPORT_ID}`)
+    elem.text('Create Report')
+    eraseCookie('report_id')
+
   } else {
     creationDateVar.text(momentDate)
   }
