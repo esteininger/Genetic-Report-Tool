@@ -4,6 +4,7 @@ from arv import load, unphased_match as match
 import json
 import uuid
 
+
 class ReportDB:
 	def __init__(self, collection):
 		self.collection = collection
@@ -22,9 +23,12 @@ class ReportDB:
 		return self.mongo_connect().insert(inserted_dict)
 
 	def delete_one(self, query):
-		#keep it
-		if not self.search_db_one(query)['stay']:
-			return self.mongo_connect().delete_one(query)
+		# keep it
+		try:
+			self.search_db_one(query)['stay']
+		except KeyError:
+			self.mongo_connect().delete_one(query)
+			pass
 
 	def update(self, query, updated_dict):
 		return self.mongo_connect().update_one(query, {"$set": updated_dict}, upsert=False)
@@ -35,9 +39,10 @@ class ReportDB:
 	def search_db_one(self, query):
 		return self.mongo_connect().find_one(query, {'_id': False})
 
+
 class ReportID:
 	def __init__(self):
-		self.db_init =  ReportDB(collection='reports')
+		self.db_init = ReportDB(collection='reports')
 		pass
 
 	def generate(self):
@@ -45,7 +50,7 @@ class ReportID:
 		return id
 
 	def insert(self, id):
-		self.db_init.insert({'report_id':id})
+		self.db_init.insert({'report_id': id})
 
 	# def retrieve(self, report_id):
 	# 	return self.db_init.search_db_one(query = {'report_id':id})
@@ -63,6 +68,7 @@ class ReportFile:
 			return load(self.file)
 		except:
 			return False
+
 
 class ReportBuild:
 	def __init__(self, genome_file):
@@ -87,7 +93,7 @@ class ReportBuild:
 	def base_query(self, collection, query, mag):
 		db_connection = ReportDB(collection)
 
-		magnitude_query = {"genes":{'$elemMatch': {'magnitude': {'$gt': float(mag)}}}}
+		magnitude_query = {"genes": {'$elemMatch': {'magnitude': {'$gt': float(mag)}}}}
 		master_query = {"$and": [magnitude_query, query]}
 
 		results = db_connection.search_db(master_query)
@@ -95,21 +101,16 @@ class ReportBuild:
 		return db_connection.return_as_json(results)
 
 	def generate_report(self, mag, db_base_query):
-		#run inside a thread and output progress bar as event stream
+		# run inside a thread and output progress bar as event stream
 		base_list = []
 		for db_snp in db_base_query['response']:
 			db_rsid = db_snp['rsid']
 			db_rsid_user_match = self.match_rsid(db_rsid)
-			# print(f"db_rsid_user_match:{db_rsid_user_match}")
 			if db_rsid_user_match:
-				# print(f"db_rsid_user_match_CONDITIONAL:{db_rsid_user_match}")
 				for db_gene in db_snp['genes']:
-					# print(f"DB_gene CONDITIONAL{db_gene}")
 					db_geno = db_gene['gene']
 					db_geno_user_match = self.match_gene(db_rsid, db_geno)
-					# print (f"db_geno_user_match:{db_geno_user_match}")
 					if db_geno_user_match and db_gene['magnitude'] >= mag:
-						print("CONDITIONAL:{}".format(db_geno_user_match))
 						j = {}
 						j['rsid'] = db_rsid
 						j['geno'] = db_geno
@@ -118,6 +119,5 @@ class ReportBuild:
 						j['summary'] = db_gene['summary']
 						j['repute'] = db_gene['repute']
 						j['tag'] = db_snp['tags']
-						print("j:{}".format(j))
 						base_list.append(j)
 		return base_list

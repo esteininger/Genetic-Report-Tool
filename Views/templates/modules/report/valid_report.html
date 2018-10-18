@@ -28,41 +28,17 @@
     <p class="text-muted font-13 m-b-20">
       Your Genome has been cross referenced with the American Council of Medical Genomics listing of "actionable genes". Review this list <a target="_blank" href="https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/">here</a>.
     </p>
-    <div class="table-responsive">
-      <table class="table m-0">
-        <thead>
-          <tr>
-            <th>Gene</th>
-            <th>Magnitude</th>
-            <th>Description</th>
-          </tr>
-        </thead>
-        <tbody id="acmg-tbody">
-        </tbody>
-      </table>
-    </div>
+    <div class="table-responsive" id="table-acmg-placeholder"></div>
   </div>
   <div class="tab-pane" id="noteworthy">
     <h4 class="m-t-0 header-title"><b>Noteworthy</b></h4>
-    <p>
-      Not ready yet!
-    </p>
+    <div class="table-responsive" id="table-noteworthy-placeholder"></div>
   </div>
   <div class="tab-pane" id="beneficial">
     <h4 class="m-t-0 header-title"><b>Beneficial</b></h4>
-    <p>
-      Not ready yet!
-    </p>
+    <div class="table-responsive" id="table-beneficial-placeholder"></div>
   </div>
 </div>
-<div style="padding-top:1em;">
-  <button id="send-to-button" class="btn btn-info waves-effect w-md waves-light m-b-5"> <i class="fa fa-envelope m-r-5"></i> <span>Get an Expert Opinion</span> </button>
-  <button id="delete-report-button" class="btn btn-danger waves-effect w-md waves-light m-b-5"> <i class="fa fa-trash m-r-5"></i> <span>Delete Forever</span> </button>
-</div>
+  <div class="buttons-cta-section"style="padding-top:1em;"></div>
 
 {% include 'modules/modals.html' %}
-
-<script type="text/javascript" src="../static/js/report.js"></script>
-<script>
-  var reportJSON = JSON.parse('{{report_dict | tojson | safe }}')
-</script>

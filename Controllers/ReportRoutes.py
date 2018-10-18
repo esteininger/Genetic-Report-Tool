@@ -9,7 +9,7 @@ mod = Blueprint('report_routes', __name__)
 
 
 @mod.route('/api/report/generate', methods=['POST'])
-def retrieve_report():
+def generate_report():
 	try:
 		file = request.files['file']
 		report_id = ReportID().generate()
@@ -27,14 +27,18 @@ def retrieve_report():
 			report_build = ReportBuild(genome_file=genome_file)
 
 			master_response_list = []
-			tags = [{"tags":"acmg"}]
+			filters = [{"tags":"acmg"}, {"tags":"beneficial"}, {"tags":"noteworthy"}]
 			mag = 1
 
-			for tag in tags:
+			# for tag in tags:
+
+			for tag in filters:
 				db_base_query = report_build.base_query(collection='snps', query=tag, mag=mag)
-				db_base_query['tag'] = tag
 				file_to_db_comparison_result = report_build.generate_report(mag, db_base_query)
 				master_response_list += file_to_db_comparison_result
+
+			# db_base_query = report_build.base_query(collection='snps', query=query, mag=mag)
+			# file_to_db_comparison_result = report_build.generate_report(mag, db_base_query)
 
 			report = {}
 			report['report_dict'] = master_response_list
@@ -43,11 +47,7 @@ def retrieve_report():
 
 			session['report_id'] = report_id
 
-			try:
-				ReportDB(collection='reports').update(query={"report_id":report_id}, updated_dict=report)
-			except Exception as e:
-				print (e)
-				pass
+			ReportDB(collection='reports').update(query={"report_id":report_id}, updated_dict=report)
 
 			return success_response(report['report_id'])
 
@@ -55,23 +55,26 @@ def retrieve_report():
 		print (e)
 		return error_response(e)
 
-@mod.route('/report/<report_id>', methods=['GET', 'DELETE'])
-def return_report(report_id):
+@mod.route('/api/report/<report_id>', methods=['GET', 'DELETE'])
+def handle_report(report_id):
 	report_db_init = ReportDB(collection='reports')
 
-	for_who = request.args.get('for', default=None, type=str)
 	query = {"report_id":report_id}
 
 	if request.method == 'GET':
 		try:
 			report_dict = report_db_init.search_db_one(query)
-			return render_template("report.html", report_dict=report_dict, for_who=for_who)
+			if report_dict:
+				return success_response(report_dict)
+			else:
+				return error_response('none')
 		except Exception as e:
-			return render_template("report.html")
+			return error_response(e)
 
 	if request.method == 'DELETE':
 		try:
 			report_db_init.delete_one(query)
 			return success_response('ok')
 		except Exception as e:
+			print (e)
 			return error_response(e)

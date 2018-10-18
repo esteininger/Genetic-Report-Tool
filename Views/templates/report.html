@@ -1,5 +1,14 @@
 {% include 'fixed/head.html' %}
 
+<!-- DataTables -->
+ <link href="../static/vendor/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css"/>
+ <link href="../static/vendor/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+ <link href="../static/vendor/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+ <link href="../static/vendor/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+ <link href="../static/vendor/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+ <link href="../static/vendor/datatables/dataTables.colVis.css" rel="stylesheet" type="text/css"/>
+ <link href="../static/vendor/datatables/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
 <style>
   .tabs-header {
     padding-bottom: 0em;
@@ -12,12 +21,8 @@
   <div class="section md-padding bg-grey">
     <div class="container">
       <div class="card-box">
-        {% if report_dict %}
-          {% if for_who %}
-            {% include 'modules/report/valid_report_for_who.html' %}
-          {% else %}
-            {% include 'modules/report/valid_report.html' %}
-          {% endif %}
+        {% if report_exists %}
+          {% include 'modules/report/valid_report.html' %}
         {% else %}
           {% include 'modules/report/invalid_report.html' %}
         {% endif %}
@@ -30,25 +35,26 @@
 </html>
 {% include 'fixed/foot.html' %}
 
+<script src="../static/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="../static/vendor/datatables/dataTables.bootstrap.js"></script>
+<script src="../static/vendor/datatables/pdfmake.min.js"></script>
+
+<!-- <script src="../static/vendor/datatables/dataTables.buttons.min.js"></script>
+<script src="../static/vendor/datatables/buttons.bootstrap.min.js"></script>
+<script src="../static/vendor/datatables/jszip.min.js"></script>
+<script src="../static/vendor/datatables/vfs_fonts.js"></script>
+<script src="../static/vendor/datatables/buttons.html5.min.js"></script>
+<script src="../static/vendor/datatables/buttons.print.min.js"></script>
+<script src="../static/vendor/datatables/dataTables.fixedHeader.min.js"></script>
+<script src="../static/vendor/datatables/dataTables.keyTable.min.js"></script>
+<script src="../static/vendor/datatables/dataTables.responsive.min.js"></script>
+<script src="../static/vendor/datatables/responsive.bootstrap.min.js"></script>
+<script src="../static/vendor/datatables/dataTables.scroller.min.js"></script>
+<script src="../static/vendor/datatables/dataTables.colVis.js"></script>
+<script src="../static/vendor/datatables/dataTables.fixedColumns.min.js"></script> -->
+
 <script>
-
-
-function updateNav(){
-  var elem = $('#nav-report-cta')
-  //does url parameter for_who exist?
-  if ('{{for_who}}' != 'None') {
-    console.log('{{for_who}}')
-    elem.attr("href", `/`)
-    elem.text('Integrate Today')
-  }
-  else {
-    //report exists in session, change URL to report ID
-    var report_id = reportJSON.report_id
-    elem.attr("href", `/report/${report_id}`)
-    elem.text('My Report')
-    setCookie('report_id', report_id, 2)
-  }
-}
-
-  updateNav();
+  var REPORT_IS_VALID = '{{report_exists}}';
+  var REPORT_ID = '{{report_id}}';
 </script>
+<script type="text/javascript" src="../static/js/report.js"></script>
