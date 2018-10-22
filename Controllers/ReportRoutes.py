@@ -7,7 +7,6 @@ from time import time
 
 mod = Blueprint('report_routes', __name__)
 
-
 @mod.route('/api/report/generate', methods=['POST'])
 def generate_report():
 	try:
@@ -27,7 +26,7 @@ def generate_report():
 			report_build = ReportBuild(genome_file=genome_file)
 
 			master_response_list = []
-			filters = [{"tags":"acmg"}, {"tags":"beneficial"}, {"tags":"noteworthy"}]
+			filters = [{"tags":"acmg"}, {"repute":"good"}, {"tags":"noteworthy"}]
 			mag = 1
 
 			# for tag in tags:
@@ -36,9 +35,6 @@ def generate_report():
 				db_base_query = report_build.base_query(collection='snps', query=tag, mag=mag)
 				file_to_db_comparison_result = report_build.generate_report(mag, db_base_query)
 				master_response_list += file_to_db_comparison_result
-
-			# db_base_query = report_build.base_query(collection='snps', query=query, mag=mag)
-			# file_to_db_comparison_result = report_build.generate_report(mag, db_base_query)
 
 			report = {}
 			report['report_dict'] = master_response_list

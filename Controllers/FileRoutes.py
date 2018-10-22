@@ -4,7 +4,7 @@ import time
 mod = Blueprint('file_routes', __name__)
 
 def generate():
-    for x in range(0, 100):
+    for x in range(0, 10000000):
         print (x)
         time.sleep(0.1)
         yield "data:" + str(x) + "\n\n"

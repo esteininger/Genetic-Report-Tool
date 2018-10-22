@@ -17,7 +17,3 @@ def report_page(report_id):
 		report_exists = True
 
 	return render_template("report.html", report_exists=report_exists, report_id=report_id)
-
-@mod.route('/privacy')
-def privacy_page():
-	return render_template("privacy.html")

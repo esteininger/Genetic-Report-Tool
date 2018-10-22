@@ -17,6 +17,12 @@ function replaceButtonsForReferrer() {
 function updateNav() {
   var elem = $('#nav-report-cta')
   //does url parameter for_who exist?
+
+  if (getCookie('report_id')){
+    elem.attr("href", `/report/${getCookie('report_id')}`)
+    elem.text('My Report')
+  }
+
   if (FOR_WHO_PARA) {
     elem.attr("href", `/`)
     elem.text('Integrate Today')
@@ -56,7 +62,7 @@ function forEachParse(report_dict) {
     //append snp dict to snp array if it contains a tag
     report_dict.forEach(function(snp) {
       if (arrayContains(tag, snp.tag)) {
-        snp.link = `<a href="https://en.wikipedia.org/wiki/${snp.gene}">Link</a>`
+        snp.gene = `<a href="https://en.wikipedia.org/wiki/${snp.gene}">${snp.gene}</a>`
         snp_array.push(snp)
       }
     })
@@ -72,8 +78,7 @@ function generateDataTable(snp_array, tag) {
          <tr>
              <th>Gene</th>
              <th>Significance</th>
-             <th>Reputation</th>
-             <th>Link</th>
+             <th>Summary</th>
          </tr>
         </thead>
  </table>
@@ -86,6 +91,9 @@ function generateDataTable(snp_array, tag) {
       type: 'formatted-num',
       targets: [1]
     }],
+    "language": {
+      "emptyTable": "We're working on this section!"
+    },
     "paging": false,
     "info": false,
     buttons: [{
@@ -99,10 +107,7 @@ function generateDataTable(snp_array, tag) {
         data: 'mag'
       },
       {
-        data: 'repute'
-      },
-      {
-        data: 'link'
+        data: 'summary'
       }
     ],
     aaSorting: [1, "desc"]
@@ -136,10 +141,10 @@ function initCreationTimeVar(timestamp) {
   var creationDateVar = $('#report-creation-time');
   var momentDate = moment.unix(timestamp).format('dddd, MMMM Do, YYYY h:mm:ss A')
   if (momentDate == 'Invalid date') {
-    creationDateVar.text('the beginning...')
+    creationDateVar.text('Friday, October 19 2018')
 
     var elem = $('#nav-report-cta')
-    
+
     elem.attr("href", `/report/${REPORT_ID}`)
     elem.text('Create Report')
     eraseCookie('report_id')

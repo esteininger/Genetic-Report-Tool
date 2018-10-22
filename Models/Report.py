@@ -4,7 +4,6 @@ from arv import load, unphased_match as match
 import json
 import uuid
 
-
 class ReportDB:
 	def __init__(self, collection):
 		self.collection = collection

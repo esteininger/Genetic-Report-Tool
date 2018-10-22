@@ -7,8 +7,9 @@ function initUploadButton() {
 
 function processFile(elem) {
   var formData = new FormData(elem[0]);
-  var originalVal = elem.html()
-  loadSpinner(elem, '', 'disable')
+  var originalVal = elem.html();
+  loadSpinner(elem, 'test', 'disable');
+  // appendProgressBar(elem)
   $.ajax({
     type: 'POST',
     url: '/api/report/generate',
@@ -57,18 +58,7 @@ function processFile(elem) {
 //     $('.progress-bar').css('width', event.data + '%').attr('aria-valuenow', event.data).text(event.data);
 //   }
 // }
-//
-// function initResults(parentTab) {
-//   //show
-//   var resultsHolder = parentTab.find('.results-holder');
-//   resultsHolder.toggleClass('hidden');
-// }
-//
-// function generateReport() {
-//
-// }
-//
-//
+
 
 $(document).ready(function(){
   initUploadButton();
