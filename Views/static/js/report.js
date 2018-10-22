@@ -18,7 +18,7 @@ function updateNav() {
   var elem = $('#nav-report-cta')
   //does url parameter for_who exist?
 
-  if (getCookie('report_id')){
+  if (getCookie('report_id')) {
     elem.attr("href", `/report/${getCookie('report_id')}`)
     elem.text('My Report')
   }
@@ -134,6 +134,7 @@ function initSendToButton() {
   $("#send-to-button").click(function(e) {
     e.preventDefault();
     $('#for-who-modal').modal('toggle');
+    $("#for-who-form")[0].reset();
   });
 }
 
@@ -161,6 +162,33 @@ function initTableSpinner() {
   });
 }
 
+function initForWhoModal() {
+  $("#for-who-form").on("submit", function() {
+    var form = $(this);
+    var elem = form.find(':submit');
+    loadSpinner(elem, '', 'disable');
+    $.ajax({
+      type: 'POST',
+      url: `/api/user`,
+      data: form.serialize(),
+      success: function(data) {
+        loadSpinner(elem, 'Send', 'enable');
+        toastr['success']('Report sent!')
+
+        setTimeout(function() {
+          $('#for-who-modal').modal('toggle');
+        }, 2000);
+
+      },
+      error: function(data) {
+        loadSpinner(elem, 'Send', 'enable');
+        console.log(data);
+      },
+    });
+    return false;
+  })
+}
+
 //Run before load:
 updateNav();
 initTableSpinner();
@@ -171,4 +199,5 @@ window.onload = function() {
   initSendToButton();
   initDeleteReportButton();
   retrieveReportDataFromAJAX();
+  initForWhoModal();
 }

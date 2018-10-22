@@ -1,5 +1,4 @@
 from flask import Blueprint, request, render_template, abort, session, redirect
-from Models.User import UserService
 from Models.Report import ReportDB
 
 mod = Blueprint('page_routes', __name__)

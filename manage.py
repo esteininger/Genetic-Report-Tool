@@ -1,5 +1,5 @@
 from flask import Flask
-from Controllers import PageRoutes, ErrorRoutes, FileRoutes, ReportRoutes
+from Controllers import PageRoutes, ErrorRoutes, FileRoutes, ReportRoutes, UserRoutes
 import os
 from config import appConfig, sessionKey, getMode, sqlConfig
 from Utilities.Database import sqlDB as db
@@ -22,7 +22,8 @@ blueprints = (
     PageRoutes.mod,
     ErrorRoutes.mod,
     FileRoutes.mod,
-    ReportRoutes.mod
+    ReportRoutes.mod,
+    UserRoutes.mod
 )
 
 for bp in blueprints:
