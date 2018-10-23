@@ -35,8 +35,8 @@ function processFile(elem) {
 function initLoadText(elem) {
   elem.append(`<div id="rotate"> <div>Your genome is most likely over 16,000 kbs, it may take a couple minutes.</div> <div>We're just comparing your genome to our list of genes.</div> <div>Is it still running? Hmmm, keep this window open and carry on...</div> </div>`)
   $('#rotate').rotaterator({
-    fadeSpeed: 5000,
-    pauseSpeed: 5000
+    fadeSpeed: 2000,
+    pauseSpeed: 2000
   });
 }
 
@@ -68,9 +68,6 @@ function generateDataTable(data) {
     data: data,
     columns: [{
         data: 'gene'
-      },
-      {
-        data: 'summary'
       }
     ]
   });

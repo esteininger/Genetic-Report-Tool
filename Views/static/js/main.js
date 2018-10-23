@@ -1,3 +1,7 @@
+//GLOBAL VARS:
+var FOR_WHO_PARA = getParameterByName('for');
+var TAG_FILTERS = ['beneficial', 'noteworthy', 'acmg'];
+
 // Btn nav collapse
 $('#nav .nav-collapse').on('click', function() {
   $('#nav').toggleClass('open');
@@ -63,11 +67,27 @@ toastr.options = {
 
 function updateNav() {
   var elem = $('#nav-report-cta')
-  //does url parameter for_who exist?
+
   if (getCookie('report_id')) {
     elem.attr("href", `/report/${getCookie('report_id')}`)
     elem.text('My Report')
   }
+
+  if (FOR_WHO_PARA){
+    elem.attr("href", `/`)
+    elem.text('Integrate Today')
+    eraseCookie('report_id');
+  }
+
+
+  // console.log(REPORT_ID, REPORT_IS_VALID)
+
+
+  //does url parameter for_who exist?
+  // if (getCookie('report_id')) {
+  //   elem.attr("href", `/report/${getCookie('report_id')}`)
+  //   elem.text('My Report')
+  // }
 
   // if (FOR_WHO_PARA) {
   //   elem.attr("href", `/`)
@@ -80,6 +100,6 @@ function updateNav() {
   // }
 }
 
-window.onload = function() {
+// window.onload = function() {
   updateNav();
-}
+// }

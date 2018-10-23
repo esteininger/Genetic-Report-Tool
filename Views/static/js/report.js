@@ -1,23 +1,10 @@
-//GLOBAL VARS:
-var FOR_WHO_PARA = getParameterByName('for');
-var TAG_FILTERS = ['beneficial', 'noteworthy', 'acmg'];
-
 function replaceButtonsForReferrer() {
   var cta_placeholder = $('.buttons-cta-section');
   var elem = $('#nav-report-cta')
 
-  if (getCookie('report_id')) {
-    elem.attr("href", `/report/${getCookie('report_id')}`)
-    elem.text('My Report')
-  }
-
   if (FOR_WHO_PARA) {
     html = `<a href="https://meports.com/gene/provider" class="btn btn-info waves-effect w-md waves-light m-b-5" role="button"><i class="fa fa-envelope m-r-5"></i> Integrate Genetic Analysis Into Your Practice</a>`;
     cta_placeholder.html(html);
-
-
-    elem.attr("href", `/`)
-    elem.text('Integrate Today')
 
   } else {
     var html = `<button id="send-to-button" class="btn btn-info waves-effect w-md waves-light m-b-5"> <i class="fa fa-envelope m-r-5"></i> <span>Get an Expert Opinion</span> </button>
@@ -35,12 +22,6 @@ function retrieveReportDataFromAJAX() {
     success: function(resp) {
       initCreationTimeVar(resp.response.timestamp)
       forEachParse(resp.response.report_dict)
-    },
-    error: function(resp) {
-      var elem = $('#nav-report-cta')
-      elem.attr("href", `/`)
-      elem.text('Create Report')
-      eraseCookie('report_id')
     }
   });
 }
@@ -117,15 +98,13 @@ function generateDataTable(snp_array, tag) {
 
 function initDeleteReportButton() {
   $("#delete-report-button").click(function(e) {
+    eraseCookie('report_id');
     e.preventDefault();
     $.ajax({
       type: "DELETE",
       url: `/api/report/${REPORT_ID}`,
       success: function(result) {
-        location.href = `/`
-      },
-      error: function(result) {
-        toastr['error'](result.message)
+        location.href = `/`;
       }
     });
   });
@@ -142,7 +121,7 @@ function initSendToButton() {
 function initCreationTimeVar(timestamp) {
   var creationDateVar = $('#report-creation-time');
   var momentDate = moment.unix(timestamp).format('dddd, MMMM Do, YYYY h:mm:ss A')
-  if (momentDate == 'Invalid date') {
+  if ((momentDate == 'Invalid date') && (!FOR_WHO_PARA)) {
     creationDateVar.text('Friday, October 19 2018')
 
     var elem = $('#nav-report-cta')

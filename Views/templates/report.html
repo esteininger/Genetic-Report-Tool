@@ -11,6 +11,7 @@
 
   <div class="section md-padding bg-grey">
     <div class="container">
+      <a href="/"><i class="fa fa-angle-left"></i>  Go Back</a>
       <div class="card-box">
         {% if report_exists %}
           {% include 'modules/report/valid_report.html' %}
@@ -24,6 +25,12 @@
 </body>
 
 </html>
+
+<script>
+  var REPORT_IS_VALID = '{{report_exists}}';
+  var REPORT_ID = '{{report_id}}';
+</script>
+
 {% include 'fixed/foot.html' %}
 
 
@@ -41,8 +48,4 @@
 <script src="../static/vendor/datatables/dataTables.colVis.js"></script>
 <script src="../static/vendor/datatables/dataTables.fixedColumns.min.js"></script> -->
 
-<script>
-  var REPORT_IS_VALID = '{{report_exists}}';
-  var REPORT_ID = '{{report_id}}';
-</script>
 <script type="text/javascript" src="../static/js/report.js"></script>
