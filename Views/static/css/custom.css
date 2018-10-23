@@ -208,3 +208,17 @@
   color:white;
   font-size:19px;
 } */
+
+.table-row-good {
+  background-color:#4bd396 !important;
+  color:white;
+  opacity: .9;
+}
+.table-row-bad {
+  background-color:#f5707a !important;
+  color: white;
+  opacity: .9;
+}
+table a{
+  color:inherit;
+}

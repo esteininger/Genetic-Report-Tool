@@ -26,8 +26,8 @@ def generate_report():
 			report_build = ReportBuild(genome_file=genome_file)
 
 			master_response_list = []
-			filters = [{"tags":"acmg"}, {"repute":"good"}, {"tags":"noteworthy"}]
-			mag = 1
+			filters = [{"tags":"acmg"}, {"tags":"noteworthy"}]
+			mag = 2
 
 			# for tag in tags:
 

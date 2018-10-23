@@ -17,7 +17,6 @@ function replaceButtonsForReferrer() {
 function updateNav() {
   var elem = $('#nav-report-cta')
   //does url parameter for_who exist?
-
   if (getCookie('report_id')) {
     elem.attr("href", `/report/${getCookie('report_id')}`)
     elem.text('My Report')
@@ -94,6 +93,15 @@ function generateDataTable(snp_array, tag) {
     "language": {
       "emptyTable": "We're working on this section!"
     },
+    // "createdRow": function(row, data, dataIndex) {
+    //   var repute = data['repute'];
+    //   if (repute == "good" ) {
+    //     $(row).addClass('table-row-good');
+    //   }
+    //   if (repute == "bad" ) {
+    //     $(row).addClass('table-row-bad');
+    //   }
+    // },
     "paging": false,
     "info": false,
     buttons: [{

@@ -76,6 +76,17 @@ class ReportBuild:
 	def clean_up_gene(self, old_gene):
 		return ''.join(filter(str.isalpha, old_gene))
 
+	def uniquify(self, my_list):
+		seen = set()
+		new_list = []
+		for item in my_list:
+		    gene = item['gene']
+		    if gene not in seen:
+		        seen.add(gene)
+		        new_list.append(item)
+
+		return new_list
+
 	def match_rsid(self, user_rsid):
 		try:
 			return self.genome_file[user_rsid]
@@ -118,4 +129,5 @@ class ReportBuild:
 						j['repute'] = db_gene['repute']
 						j['tag'] = db_snp['tags']
 						base_list.append(j)
-		return base_list
+
+		return self.uniquify(base_list)
