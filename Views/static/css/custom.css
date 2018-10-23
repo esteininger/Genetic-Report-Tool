@@ -222,3 +222,18 @@
 table a{
   color:inherit;
 }
+
+.bolded {
+  font-weight: 900;
+  font-size: 16px;"
+}
+
+.info-service img {
+  max-width: 11em;
+  margin:1em;
+}
+
+.gene-link {
+  font-weight: 900;
+  color: #41c0c3;
+}

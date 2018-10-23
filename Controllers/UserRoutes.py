@@ -15,7 +15,9 @@ def profile_handler():
 		if result:
 			return error_response("missing {}".format(result))
 
-		user = User()
-		user.add(json)
+		User().add(json)
+
+		html = 'Name: {} \n Email: {} \n Provider: {} \n Provider Email: {}'.format(json['name'], json['email'], json['provider_name'], json['provider_email'])
+		Mailer().sendMail(html=html, toaddr="ethan@meports.com", subject="Meports: User signup")
 
 		return success_response('ok')

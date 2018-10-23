@@ -9,6 +9,7 @@ function processFile(elem) {
   var formData = new FormData(elem[0]);
   var originalVal = elem.html();
   loadSpinner(elem, 'test', 'disable');
+  initLoadText(elem)
   // appendProgressBar(elem)
   $.ajax({
     type: 'POST',
@@ -17,11 +18,12 @@ function processFile(elem) {
     contentType: false,
     cache: false,
     processData: false,
-    success: function(data, textStatus, jqXHR){
+    success: function(data, textStatus, jqXHR) {
       var reportID = data['response']
+      setCookie('report_id', reportID, 2)
       location.href = `/report/${reportID}`
     },
-    error: function(jqXHR, textStatus, errorThrown){
+    error: function(jqXHR, textStatus, errorThrown) {
       toastr['error']('Invalid file, are you sure you uploaded the right one?')
 
       loadSpinner(elem, originalVal, 'enable')
@@ -29,6 +31,55 @@ function processFile(elem) {
     }
   });
 }
+
+function initLoadText(elem) {
+  elem.append(`<div id="rotate"> <div>Your genome is most likely over 16,000 kbs, it may take a couple minutes.</div> <div>We're just comparing your genome to our list of genes.</div> <div>Is it still running? Hmmm, keep this window open and carry on...</div> </div>`)
+  $('#rotate').rotaterator({
+    fadeSpeed: 5000,
+    pauseSpeed: 5000
+  });
+}
+
+//1. get JSON from AJAX
+function initGenesWeLookForButton() {
+  $("#genes-we-look-for-button").click(function(e) {
+    e.preventDefault();
+    $('#genes-we-look-for').modal('toggle');
+
+    $.ajax({
+      url: `/api/report/genes`,
+      type: "GET",
+      success: function(resp) {
+        generateDataTable(resp.response)
+      }
+    });
+  });
+}
+
+
+function generateDataTable(data) {
+  // var arr = new Array()
+  //append snp dict to snp array if it contains a tag
+  data.forEach(function(d) {
+    d.gene = `<a class="gene-link" href="https://en.wikipedia.org/wiki/${d.gene}">${d.gene}</a>`
+  })
+
+  $(`#gene-table-placeholder`).DataTable({
+    data: data,
+    columns: [{
+        data: 'gene'
+      },
+      {
+        data: 'summary'
+      }
+    ]
+  });
+
+  $('#genes-we-look-for').on('hidden.bs.modal', function () {
+    $('#gene-table-placeholder').dataTable().fnDestroy();
+  })
+}
+
 
 // function appendProgressBar(elem) {
 //   var html =
@@ -60,6 +111,7 @@ function processFile(elem) {
 // }
 
 
-$(document).ready(function(){
+$(document).ready(function() {
   initUploadButton();
+  initGenesWeLookForButton()
 });

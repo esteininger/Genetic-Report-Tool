@@ -4,32 +4,25 @@ var TAG_FILTERS = ['beneficial', 'noteworthy', 'acmg'];
 
 function replaceButtonsForReferrer() {
   var cta_placeholder = $('.buttons-cta-section');
-  if (FOR_WHO_PARA) {
-    html = `<a href="https://meports.com/gene/provider" class="btn btn-info waves-effect w-md waves-light m-b-5" role="button"><i class="fa fa-envelope m-r-5"></i> Integrate Genetic Analysis Into Your Practice</a>`;
-    cta_placeholder.html(html);
-  } else {
-    var html = `<button id="send-to-button" class="btn btn-info waves-effect w-md waves-light m-b-5"> <i class="fa fa-envelope m-r-5"></i> <span>Get an Expert Opinion</span> </button>
-    <button id="delete-report-button" class="btn btn-danger waves-effect w-md waves-light m-b-5"> <i class="fa fa-trash m-r-5"></i> <span>Delete Forever</span> </button>`;
-    cta_placeholder.html(html);
-  }
-}
-
-function updateNav() {
   var elem = $('#nav-report-cta')
-  //does url parameter for_who exist?
+
   if (getCookie('report_id')) {
     elem.attr("href", `/report/${getCookie('report_id')}`)
     elem.text('My Report')
   }
 
   if (FOR_WHO_PARA) {
+    html = `<a href="https://meports.com/gene/provider" class="btn btn-info waves-effect w-md waves-light m-b-5" role="button"><i class="fa fa-envelope m-r-5"></i> Integrate Genetic Analysis Into Your Practice</a>`;
+    cta_placeholder.html(html);
+
+
     elem.attr("href", `/`)
     elem.text('Integrate Today')
-  } else if (REPORT_IS_VALID == 'True') {
-    //report exists in session, change URL to report ID
-    elem.attr("href", `/report/${REPORT_ID}`)
-    elem.text('My Report')
-    setCookie('report_id', REPORT_ID, 2)
+
+  } else {
+    var html = `<button id="send-to-button" class="btn btn-info waves-effect w-md waves-light m-b-5"> <i class="fa fa-envelope m-r-5"></i> <span>Get an Expert Opinion</span> </button>
+    <button id="delete-report-button" class="btn btn-danger waves-effect w-md waves-light m-b-5"> <i class="fa fa-trash m-r-5"></i> <span>Delete Forever</span> </button>`;
+    cta_placeholder.html(html);
   }
 }
 
@@ -61,7 +54,7 @@ function forEachParse(report_dict) {
     //append snp dict to snp array if it contains a tag
     report_dict.forEach(function(snp) {
       if (arrayContains(tag, snp.tag)) {
-        snp.gene = `<a href="https://en.wikipedia.org/wiki/${snp.gene}">${snp.gene}</a>`
+        snp.gene = `<a class="gene-link" href="https://en.wikipedia.org/wiki/${snp.gene}">${snp.gene}</a>`
         snp_array.push(snp)
       }
     })
@@ -154,7 +147,7 @@ function initCreationTimeVar(timestamp) {
 
     var elem = $('#nav-report-cta')
 
-    elem.attr("href", `/report/${REPORT_ID}`)
+    elem.attr("href", `/`)
     elem.text('Create Report')
     eraseCookie('report_id')
 
@@ -198,7 +191,6 @@ function initForWhoModal() {
 }
 
 //Run before load:
-updateNav();
 initTableSpinner();
 
 //Run after load:

@@ -7,6 +7,19 @@ from time import time
 
 mod = Blueprint('report_routes', __name__)
 
+@mod.route('/api/report/genes', methods=['GET'])
+def retrieve_genes():
+	master_list = []
+	genes_collections = ['acmg', 'noteworthy']
+	for collection in genes_collections:
+		init = ReportDB(collection=collection)
+		query = init.search_db(query={})
+		each_gene = init.return_as_json(query)['response']
+		for gene in each_gene:
+			master_list.append(gene)
+
+	return success_response(master_list)
+
 @mod.route('/api/report/generate', methods=['POST'])
 def generate_report():
 	try:
@@ -27,7 +40,7 @@ def generate_report():
 
 			master_response_list = []
 			filters = [{"tags":"acmg"}, {"tags":"noteworthy"}]
-			mag = 2
+			mag = 3
 
 			# for tag in tags:
 

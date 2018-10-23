@@ -11,13 +11,13 @@ class Mailer:
         self.PORT = emailConfig['PORT']
         self.FROM_ADDR = emailConfig['ADDRESS']
 
-    def sendMail(self, **kwargs):
+    def sendMail(self, html, toaddr, subject):
         try:
-            toaddr = kwargs.get('toaddr')
+            # toaddr = kwargs.get('toaddr')
             msg = MIMEMultipart()
             msg['From'] = self.FROM_ADDR
             msg['To'] = toaddr
-            msg['Subject'] = kwargs.get('subject')
+            msg['Subject'] = subject
             # #set email template
             # if kwargs.get('type') == 'reset':
             #     html = self.resetEmailTemplate(kwargs.get('username'), kwargs.get('uniqueID'))
