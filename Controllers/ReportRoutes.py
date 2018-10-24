@@ -11,12 +11,23 @@ mod = Blueprint('report_routes', __name__)
 def retrieve_genes():
 	master_list = []
 	genes_collections = ['acmg', 'noteworthy']
+
 	for collection in genes_collections:
 		init = ReportDB(collection=collection)
 		query = init.search_db(query={})
 		each_gene = init.return_as_json(query)['response']
 		for gene in each_gene:
-			master_list.append(gene)
+			m = {}
+			m['tag'] = collection
+			m['gene'] = gene['gene']
+
+			try:
+				m['description'] = gene['description']
+
+			except:
+				m['description'] = ''
+
+			master_list.append(m)
 
 	return success_response(master_list)
 

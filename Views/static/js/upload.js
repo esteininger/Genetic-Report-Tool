@@ -66,13 +66,21 @@ function generateDataTable(data) {
 
   $(`#gene-table-placeholder`).DataTable({
     data: data,
-    columns: [{
+    columns: [
+      {
         data: 'gene'
+      },
+      {
+        data: 'description'
+      },
+      {
+        data: 'tag'
       }
-    ]
+    ],
+    aaSorting: [1, "desc"]
   });
 
-  $('#genes-we-look-for').on('hidden.bs.modal', function () {
+  $('#genes-we-look-for').on('hidden.bs.modal', function() {
     $('#gene-table-placeholder').dataTable().fnDestroy();
   })
 }

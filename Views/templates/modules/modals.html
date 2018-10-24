@@ -9,7 +9,7 @@
         <p class="text-muted m-b-30 font-13" style="padding-top: .4em; color: #a8a8a8;">We don't store your genome, this is so your provider has a reference.</p>
         <div class="modal-body">
           <div class="row">
-            <h4 class="m-t-50 header-title" style="padding-left:1em;"><b>You</b></h4>
+            <h5 class="m-t-50 header-title" style="padding-left:1em;"><b>You</b></h5>
             <div class="col-md-6">
               <div class="form-group">
                 <input type="text" class="form-control" name="name" placeholder="Your Name" required>
@@ -22,7 +22,7 @@
             </div>
           </div>
           <div class="row">
-            <h4 class="m-t-50 header-title" style="padding-left:1em;"><b>Your Provider</b></h4>
+            <h5 class="m-t-50 header-title" style="padding-left:1em;"><b>The Expert</b></h5>
             <div class="col-md-6">
               <div class="form-group">
                 <input type="text" class="form-control" name="provider_name" placeholder="Your Providers' Name" required>
@@ -35,6 +35,7 @@
             </div>
           </div>
         </div>
+        <input type="hidden" name="url" value="https://gene.meports.com/report/{{report_id}}">
         <div class="modal-footer">
           <button type="button" class="btn btn-default waves-effect" data-dismiss="modal">Close</button>
           <button type="submit" id="submit-for-who-form" class="btn btn-success waves-effect waves-light">Send</button>
@@ -59,6 +60,8 @@
             <thead>
               <tr>
                 <th>Gene</th>
+                <th>Description</th>
+                <th>Tag</th>
               </tr>
             </thead>
           </table>
