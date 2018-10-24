@@ -65,7 +65,7 @@ function generateDataTable(snp_array, tag) {
       targets: [1]
     }],
     "language": {
-      "emptyTable": "We're working on this section!"
+      "emptyTable": "No results here"
     },
     // "createdRow": function(row, data, dataIndex) {
     //   var repute = data['repute'];
