@@ -1,6 +1,5 @@
 function replaceButtonsForReferrer() {
   var cta_placeholder = $('.buttons-cta-section');
-  var elem = $('#nav-report-cta')
 
   if (FOR_WHO_PARA) {
     html = `<a href="https://meports.com/gene/provider" class="btn btn-info waves-effect w-md waves-light m-b-5" role="button"><i class="fa fa-envelope m-r-5"></i> Integrate Genetic Analysis Into Your Practice</a>`;
@@ -121,7 +120,7 @@ function initSendToButton() {
 function initCreationTimeVar(timestamp) {
   var creationDateVar = $('#report-creation-time');
   var momentDate = moment.unix(timestamp).format('dddd, MMMM Do, YYYY h:mm:ss A')
-  if ((momentDate == 'Invalid date') && (!FOR_WHO_PARA)) {
+  if ((momentDate == 'Invalid date')) {
     creationDateVar.text('Friday, October 19 2018')
 
     var elem = $('#nav-report-cta')
