@@ -19,7 +19,7 @@ def profile_handler():
 		mailer = Mailer()
 
 		html = 'Name: {} \n Email: {} \n Provider: {} \n Provider Email: {}'.format(json['name'], json['email'], json['provider_name'], json['provider_email'])
-		# mailer.sendMail(html=html, toaddr="ethan@meports.com", subject="Meports: User provider request")
+		mailer.sendMail(html=html, toaddr="ethan@meports.com", subject="Meports: User provider request")
 
 		mailer.sendProviderEmail(provider_name=json['provider_name'], provider_email=json['provider_email'], client_name=json['name'], url=json['url'], client_email=json['email'])
 
