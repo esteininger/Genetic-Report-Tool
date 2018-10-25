@@ -59,7 +59,7 @@ def generate_report():
 				master_response_list += file_to_db_comparison_result
 
 			report = {}
-			report['report_dict'] = report_build.uniquify(master_response_list)
+			report['report_dict'] = master_response_list
 			report['timestamp'] = time()
 			report['report_id'] = report_id
 
