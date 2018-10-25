@@ -78,9 +78,11 @@ function generateDataTable(snp_array, tag) {
     // },
     "paging": false,
     "info": false,
+    dom: "Bfrtip",
     buttons: [{
       extend: "pdf",
-      className: "btn-sm"
+      className: "btn-sm pdf-download",
+      text: '<i class="fa fa-download"></i> PDF'
     }],
     columns: [{
         data: 'gene_link'

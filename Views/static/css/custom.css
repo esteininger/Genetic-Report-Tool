@@ -237,3 +237,9 @@ table a{
   font-weight: 900;
   color: #41c0c3;
 }
+
+.pdf-download {
+  color: rgba(43,61,81,.7);
+  transition: all .2s;
+  font-size:14px;
+}
