@@ -34,7 +34,8 @@ function forEachParse(report_dict) {
     //append snp dict to snp array if it contains a tag
     report_dict.forEach(function(snp) {
       if (arrayContains(tag, snp.tag)) {
-        snp.gene = `<a class="gene-link" href="https://en.wikipedia.org/wiki/${snp.gene}">${snp.gene}</a>`
+        // snp.gene =
+        snp.gene_link = `<a class="gene-link" href="https://en.wikipedia.org/wiki/${snp.gene}">${snp.gene}</a>`
         snp_array.push(snp)
       }
     })
@@ -82,7 +83,7 @@ function generateDataTable(snp_array, tag) {
       className: "btn-sm"
     }],
     columns: [{
-        data: 'gene'
+        data: 'gene_link'
       },
       {
         data: 'mag'

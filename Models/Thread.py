@@ -13,11 +13,11 @@ class Thread:
 #     def get(self):
 #         return str(uuid.uuid4())
 
-class Cache:
-    def __init__(self):
-        pass
-    def get(self, key, val):
-        return self.client.hget(key, val)
-
-    def set(self, key, subKey, newVal):
-        return self.client.hset(key, subKey, newVal)
+# class Cache:
+#     def __init__(self):
+#         pass
+#     def get(self, key, val):
+#         return self.client.hget(key, val)
+#
+#     def set(self, key, subKey, newVal):
+#         return self.client.hset(key, subKey, newVal)

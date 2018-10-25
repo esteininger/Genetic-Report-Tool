@@ -130,4 +130,4 @@ class ReportBuild:
 						j['tag'] = db_snp['tags']
 						base_list.append(j)
 
-		return self.uniquify(base_list)
+		return base_list

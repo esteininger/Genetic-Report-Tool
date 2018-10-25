@@ -51,9 +51,7 @@ def generate_report():
 
 			master_response_list = []
 			filters = [{"tags":"acmg"}, {"tags":"noteworthy"}]
-			mag = 3
-
-			# for tag in tags:
+			mag = 2
 
 			for tag in filters:
 				db_base_query = report_build.base_query(collection='snps', query=tag, mag=mag)
@@ -61,7 +59,7 @@ def generate_report():
 				master_response_list += file_to_db_comparison_result
 
 			report = {}
-			report['report_dict'] = master_response_list
+			report['report_dict'] = report_build.uniquify(master_response_list)
 			report['timestamp'] = time()
 			report['report_id'] = report_id
 
