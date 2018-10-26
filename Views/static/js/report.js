@@ -82,7 +82,8 @@ function generateDataTable(snp_array, tag) {
     buttons: [{
       extend: "pdf",
       className: "btn-sm pdf-download",
-      text: '<i class="fa fa-download"></i> PDF'
+      text: '<i class="fa fa-download"></i> PDF',
+      title: `${tag}_${moment().format('MM-DD-YYYY')}`
     }],
     columns: [{
         data: 'gene_link'

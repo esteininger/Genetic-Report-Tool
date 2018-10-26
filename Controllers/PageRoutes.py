@@ -16,3 +16,14 @@ def report_page(report_id):
 		report_exists = True
 
 	return render_template("report.html", report_exists=report_exists, report_id=report_id)
+
+@mod.route('/gene/<id>', methods=['GET'])
+def gene_page(id):
+	gene_exists = False
+	init_genes_db = ReportDB(collection='genes')
+
+	query = init_genes_db.search_db_one({"gene":id.upper()})
+	if query:
+		gene_exists = True
+
+	return render_template("gene.html", gene_exists=gene_exists, gene=query)

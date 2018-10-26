@@ -1,0 +1,27 @@
+{% include 'fixed/head.html' %}
+
+<body>
+  {% include 'fixed/nav.html' %}
+
+  <div class="section md-padding bg-grey">
+    <div class="container">
+      <a class="bolded" href="/"><i class="fa fa-angle-left"></i>  Go Home</a>
+      <div class="card-box">
+        {% if gene_exists %}
+          {{gene.description}}
+        {% else %}
+          None
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% include 'fixed/footer.html' %}
+</body>
+
+</html>
+
+<script>
+  var GENE_IS_VALID = '{{gene_exists}}';
+</script>
+
+{% include 'fixed/foot.html' %}

@@ -51,7 +51,7 @@ def generate_report():
 
 			master_response_list = []
 			filters = [{"tags":"acmg"}, {"tags":"noteworthy"}]
-			mag = 2
+			mag = 3
 
 			for tag in filters:
 				db_base_query = report_build.base_query(collection='snps', query=tag, mag=mag)
