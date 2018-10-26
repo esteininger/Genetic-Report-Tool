@@ -8,15 +8,15 @@
   </p>
     <ul class="nav nav-tabs tabs-bordered">
       <li class="active">
-        <a href="ui-tabs.html#acmg" data-toggle="tab" aria-expanded="true">
-          <span class="visible-xs"><i class="fa fa-home"></i></span>
-          <span class="hidden-xs">ACMG</span>
-        </a>
-      </li>
-      <li class="">
         <a href="ui-tabs.html#noteworthy" data-toggle="tab" aria-expanded="true">
           <span class="visible-xs"><i class="fa fa-home"></i></span>
           <span class="hidden-xs">Noteworthy</span>
+        </a>
+      </li>
+      <li class="">
+        <a href="ui-tabs.html#acmg" data-toggle="tab" aria-expanded="true">
+          <span class="visible-xs"><i class="fa fa-home"></i></span>
+          <span class="hidden-xs">ACMG</span>
         </a>
       </li>
       <li class="">
@@ -28,19 +28,19 @@
 </div>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="acmg">
-    <h4 class="m-t-0 header-title"><b>ACMG</b></h4>
-    <p class="text-muted font-13 m-b-20">
-      Your Genome has been cross referenced with the American Council of Medical Genomics listing of "actionable genes". Review this list <a class="bolded" target="_blank" href="https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/">here</a>.
-    </p>
-    <div class="table-responsive" id="table-acmg-placeholder"></div>
-  </div>
-  <div class="tab-pane" id="noteworthy">
+  <div class="tab-pane active" id="noteworthy">
     <h4 class="m-t-0 header-title"><b>Noteworthy</b></h4>
     <p class="text-muted font-13 m-b-20">
       These are genes deemed noteworthy. You may not be able to affect them, but they are worth being aware of. Some include APOE, MTHFR, etc.
     </p>
     <div class="table-responsive" id="table-noteworthy-placeholder"></div>
+  </div>
+  <div class="tab-pane" id="acmg">
+    <h4 class="m-t-0 header-title"><b>ACMG</b></h4>
+    <p class="text-muted font-13 m-b-20">
+      Your Genome has been cross referenced with the American Council of Medical Genomics listing of "actionable genes". Review this list <a class="bolded" target="_blank" href="https://www.ncbi.nlm.nih.gov/clinvar/docs/acmg/">here</a>.
+    </p>
+    <div class="table-responsive" id="table-acmg-placeholder"></div>
   </div>
   <div class="tab-pane" id="beneficial">
     <h4 class="m-t-0 header-title"><b>Beneficial</b></h4>
