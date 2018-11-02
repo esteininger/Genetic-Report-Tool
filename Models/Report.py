@@ -122,10 +122,8 @@ class ReportBuild:
 						j['mag'] = db_gene['magnitude']
 						j['summary'] = db_gene['summary']
 						j['repute'] = db_gene['repute']
-						if keyword is None:
-							j['tag'] = db_snp['tags']
-						else:
-							j['tag'] = keyword
+						j['tag'] = keyword
+
 						base_list.append(j)
 
 		return base_list

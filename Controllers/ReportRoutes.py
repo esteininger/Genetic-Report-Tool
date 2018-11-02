@@ -70,16 +70,11 @@ def generate_report():
 
         for filter in filters:
             for gene in filter['gene']:
-                db_base_query = report_build.base_query(
-                    collection='snps', query={"gene": gene}, mag=mag)
-                file_to_db_comparison_result = report_build.generate_report(
-                    mag, db_base_query, keyword=filter['keyword'])
-                unique_file_to_db_result = report_build.uniquify(
-                    file_to_db_comparison_result)
-                master_response_list += unique_file_to_db_result
+                db_base_query = report_build.base_query(collection='snps', query={"gene": gene}, mag=mag)
+                master_response_list += report_build.generate_report(mag, db_base_query, keyword=filter['keyword'])
 
         report = {}
-        report['report_dict'] = master_response_list
+        report['report_dict'] = report_build.uniquify(master_response_list)
         report['timestamp'] = time()
         report['report_id'] = report_id
 
@@ -91,8 +86,7 @@ def generate_report():
 
         session['report_id'] = report_id
 
-        ReportDB(collection='reports').update(
-            query={"report_id": report_id}, updated_dict=report)
+        ReportDB(collection='reports').update(query={"report_id": report_id}, updated_dict=report)
 
         return success_response(report['report_id'])
 
