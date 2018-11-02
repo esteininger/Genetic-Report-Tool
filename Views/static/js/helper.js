@@ -50,3 +50,11 @@ function getParameterByName(name, url) {
 function arrayContains(find, array) {
   return array.indexOf(find) > -1;
 }
+
+function filterUniques(list){
+  var uniqueNames = [];
+  $.each(list, function(i, el){
+      if($.inArray(el, uniqueNames) === -1) uniqueNames.push(el);
+  });
+  return uniqueNames
+}

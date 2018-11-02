@@ -1,5 +1,5 @@
 from flask import Flask
-from Controllers import PageRoutes, ErrorRoutes, FileRoutes, ReportRoutes, UserRoutes
+from Controllers import PageRoutes, ErrorRoutes, ReportRoutes, UserRoutes, GeneRoutes, OfficeRoutes
 import os
 from config import appConfig, sessionKey, getMode, sqlConfig
 from Utilities.Database import sqlDB as db
@@ -13,17 +13,18 @@ app.static_folder = appConfig['ROOT_PATH'] + '/Views/static'
 app.template_folder = appConfig['ROOT_PATH'].split('Controllers')[0] + '/Views/templates'
 
 #Mysql db init
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://{}:{}@{}/{}'.format(sqlConfig['USERNAME'], sqlConfig['PASSWORD'], sqlConfig['IP'], sqlConfig['DATABASE'])
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db.init_app(app)
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://{}:{}@{}/{}'.format(sqlConfig['USERNAME'], sqlConfig['PASSWORD'], sqlConfig['IP'], sqlConfig['DATABASE'])
+# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+# db.init_app(app)
 
 #blueprints init
 blueprints = (
     PageRoutes.mod,
     ErrorRoutes.mod,
-    FileRoutes.mod,
     ReportRoutes.mod,
-    UserRoutes.mod
+    GeneRoutes.mod,
+    UserRoutes.mod,
+    OfficeRoutes.mod
 )
 
 for bp in blueprints:

@@ -50,11 +50,6 @@ class ReportID:
 	def insert(self, id):
 		self.db_init.insert({'report_id': id})
 
-	# def retrieve(self, report_id):
-	# 	return self.db_init.search_db_one(query = {'report_id':id})
-	#
-	# def update(self, report_id):
-
 
 class ReportFile:
 	def __init__(self, file, source_site=None):
@@ -109,7 +104,7 @@ class ReportBuild:
 
 		return db_connection.return_as_json(results)
 
-	def generate_report(self, mag, db_base_query):
+	def generate_report(self, mag, db_base_query, keyword=None):
 		# run inside a thread and output progress bar as event stream
 		base_list = []
 		for db_snp in db_base_query['response']:
@@ -127,7 +122,10 @@ class ReportBuild:
 						j['mag'] = db_gene['magnitude']
 						j['summary'] = db_gene['summary']
 						j['repute'] = db_gene['repute']
-						j['tag'] = db_snp['tags']
+						if keyword is None:
+							j['tag'] = db_snp['tags']
+						else:
+							j['tag'] = keyword
 						base_list.append(j)
 
 		return base_list

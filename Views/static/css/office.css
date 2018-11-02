@@ -1,0 +1,17 @@
+.bootstrap-tagsinput {
+  height:5em;
+}
+
+.fake-input {
+  background: #F4F4F4;
+  border-bottom: 2px solid #EEE;
+  height:5em;
+}
+
+.loading-input {
+    background-color: #ffffff;
+    background-image: url("http://loadinggif.com/images/image-selection/3.gif");
+    background-size: 25px 25px;
+    background-position:right center;
+    background-repeat: no-repeat;
+}

@@ -1,3 +1,5 @@
+var OFFICE_PARA = getParameterByName('office');
+
 function initUploadButton() {
   $("#upload-report-form").change(function() {
     var elem = $(this)
@@ -11,9 +13,14 @@ function processFile(elem) {
   loadSpinner(elem, 'test', 'disable');
   initLoadText(elem)
   // appendProgressBar(elem)
+  var full_url = `/api/report/generate`
+  if (OFFICE_PARA) {
+    full_url += `?office=${OFFICE_PARA}`
+  }
+
   $.ajax({
     type: 'POST',
-    url: '/api/report/generate',
+    url: full_url,
     data: formData,
     contentType: false,
     cache: false,

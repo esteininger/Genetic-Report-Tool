@@ -1,5 +1,12 @@
 {% include 'fixed/head.html' %}
 
+<!-- DataTables -->
+<link rel="stylesheet" type="text/css" href="../static/vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="../static/vendor/datatables/Buttons-1.5.4/css/buttons.bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="../static/vendor/datatables/Responsive-2.2.2/css/responsive.bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="../static/vendor/datatables/DataTables-1.10.18/css/dataTables.bootstrap.min.css/">
+
+
 <style>
   .tabs-header {
     padding-bottom: 0em;
@@ -11,7 +18,7 @@
 
   <div class="section md-padding bg-grey">
     <div class="container">
-      <a class="bolded" href="/"><i class="fa fa-angle-left"></i>  Go Back</a>
+      <a class="bolded" href="#" action="action" onclick="window.history.go(-1); return false;"><i class="fa fa-angle-left"></i>  Go Back</a>
       <div class="card-box">
         {% if report_exists %}
           {% include 'modules/report/valid_report.html' %}
@@ -34,18 +41,15 @@
 {% include 'fixed/foot.html' %}
 
 
-<!-- <script src="../static/vendor/datatables/dataTables.buttons.min.js"></script>
-<script src="../static/vendor/datatables/buttons.bootstrap.min.js"></script>
-<script src="../static/vendor/datatables/jszip.min.js"></script>
-<script src="../static/vendor/datatables/vfs_fonts.js"></script>
-<script src="../static/vendor/datatables/buttons.html5.min.js"></script>
-<script src="../static/vendor/datatables/buttons.print.min.js"></script>
-<script src="../static/vendor/datatables/dataTables.fixedHeader.min.js"></script>
-<script src="../static/vendor/datatables/dataTables.keyTable.min.js"></script>
-<script src="../static/vendor/datatables/dataTables.responsive.min.js"></script>
-<script src="../static/vendor/datatables/responsive.bootstrap.min.js"></script>
-<script src="../static/vendor/datatables/dataTables.scroller.min.js"></script>
-<script src="../static/vendor/datatables/dataTables.colVis.js"></script>
-<script src="../static/vendor/datatables/dataTables.fixedColumns.min.js"></script> -->
+<!-- Datatable -->
+<!-- <script src="../static/vendor/datatables/dataTables.min.js"></script> -->
+
+<script type="text/javascript" src="../static/vendor/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript" src="../static/vendor/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript" src="../static/vendor/datatables/DataTables-1.10.18/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="../static/vendor/datatables/Buttons-1.5.4/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript" src="../static/vendor/datatables/Buttons-1.5.4/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="../static/vendor/datatables/Responsive-2.2.2/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript" src="../static/vendor/datatables/Select-1.2.6/js/dataTables.select.min.js"></script>
 
 <script type="text/javascript" src="../static/js/report.js"></script>

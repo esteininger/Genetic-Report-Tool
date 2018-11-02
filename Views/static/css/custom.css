@@ -209,7 +209,7 @@
   font-size:19px;
 } */
 
-.table-row-good {
+/* .table-row-good {
   background-color:#4bd396 !important;
   color:white;
   opacity: .9;
@@ -218,7 +218,7 @@
   background-color:#f5707a !important;
   color: white;
   opacity: .9;
-}
+} */
 table a{
   color:inherit;
 }
@@ -242,4 +242,23 @@ table a{
   color: rgba(43,61,81,.7);
   transition: all .2s;
   font-size:14px;
+}
+
+.modal {
+  text-align: center;
+}
+
+@media screen and (min-width: 768px) {
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
 }

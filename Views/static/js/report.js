@@ -1,15 +1,15 @@
 function replaceButtonsForReferrer() {
   var cta_placeholder = $('.buttons-cta-section');
 
-  if (FOR_WHO_PARA) {
-    html = `<a href="https://meports.com/gene/provider" class="btn btn-info waves-effect w-md waves-light m-b-5" role="button"><i class="fa fa-envelope m-r-5"></i> Integrate Genetic Analysis Into Your Practice</a>`;
-    cta_placeholder.html(html);
-
-  } else {
-    var html = `<button id="send-to-button" class="btn btn-info waves-effect w-md waves-light m-b-5"> <i class="fa fa-envelope m-r-5"></i> <span>Get an Expert Opinion</span> </button>
-    <button id="delete-report-button" class="btn btn-danger waves-effect w-md waves-light m-b-5"> <i class="fa fa-trash m-r-5"></i> <span>Delete Forever</span> </button>`;
-    cta_placeholder.html(html);
-  }
+  // if (FOR_WHO_PARA) {
+  //   html = `<a href="https://meports.com/gene/provider" class="btn btn-info waves-effect w-md waves-light m-b-5" role="button"><i class="fa fa-envelope m-r-5"></i> Integrate Genetic Analysis Into Your Practice</a>`;
+  //   cta_placeholder.html(html);
+  //
+  // } else {
+  var html = `<button id="send-to-button" class="btn btn-info waves-effect w-md waves-light m-b-5"> <i class="fa fa-envelope m-r-5"></i> <span>Get an Expert Opinion</span> </button>
+  <button id="delete-report-button" class="btn btn-danger waves-effect w-md waves-light m-b-5"> <i class="fa fa-trash m-r-5"></i> <span>Delete Forever</span> </button>`;
+  cta_placeholder.html(html);
+  // }
 }
 
 
@@ -21,44 +21,43 @@ function retrieveReportDataFromAJAX() {
     success: function(resp) {
       initCreationTimeVar(resp.response.timestamp)
       forEachParse(resp.response.report_dict)
+      console.log(resp)
     }
   });
 }
 
 //2. send each JSON to datatable
 function forEachParse(report_dict) {
-  //loop all tags
-  TAG_FILTERS.forEach(function(tag) {
-
-    var snp_array = new Array()
-    //append snp dict to snp array if it contains a tag
-    report_dict.forEach(function(snp) {
-      if (arrayContains(tag, snp.tag)) {
-        // snp.gene =
-        snp.gene_link = `<a class="gene-link" href="https://en.wikipedia.org/wiki/${snp.gene}">${snp.gene}</a>`
-        snp_array.push(snp)
-      }
-    })
-    //send snp array to datatable creation function
-    generateDataTable(snp_array, tag)
-  });
+  var snp_array = new Array()
+  //append snp dict to snp array if it contains a tag
+  report_dict.forEach(function(snp) {
+    // if (arrayContains(tag, snp.tag)) {
+    //   // snp.gene =
+      snp.snp = `${snp.rsid}:${snp.geno}`
+      snp.gene_link = `<a class="gene-link" href="https://en.wikipedia.org/wiki/${snp.gene}">${snp.gene}</a>`
+    // }
+    snp_array.push(snp)
+  })
+  generateDataTable(snp_array)
 }
 
-function generateDataTable(snp_array, tag) {
+function generateDataTable(snp_array) {
   var table_html = `
-  <table id="table-${tag}" class="table table-striped table-bordered">
+  <table id="table-genes" class="table table-striped table-bordered">
      <thead>
          <tr>
              <th>Gene</th>
              <th>Significance</th>
              <th>Summary</th>
+             <th>Keyword</th>
+             <th>SNP</th>
          </tr>
         </thead>
  </table>
   `
-  $(`#table-${tag}-placeholder`).html(table_html)
+  $(`#content-placeholder`).html(table_html)
 
-  $(`#table-${tag}`).DataTable({
+  $(`#table-genes`).DataTable({
     data: snp_array,
     columnDefs: [{
       type: 'formatted-num',
@@ -67,23 +66,30 @@ function generateDataTable(snp_array, tag) {
     "language": {
       "emptyTable": "No results here"
     },
-    // "createdRow": function(row, data, dataIndex) {
-    //   var repute = data['repute'];
-    //   if (repute == "good" ) {
-    //     $(row).addClass('table-row-good');
-    //   }
-    //   if (repute == "bad" ) {
-    //     $(row).addClass('table-row-bad');
-    //   }
-    // },
+    createdRow: function(row, data, dataIndex) {
+      var repute = data['repute'];
+      if (repute == "good" ) {
+        $(row).addClass('table-row-good');
+      }
+      if (repute == "bad" ) {
+        $(row).addClass('table-row-bad');
+      }
+    },
     "paging": false,
     "info": false,
     dom: "Bfrtip",
     buttons: [{
+      orientation: 'portrait', //lanscape
+      pageSize: 'A4', //A3 , A5 , A6 , legal , letter
       extend: "pdf",
       className: "btn-sm pdf-download",
-      text: '<i class="fa fa-download"></i> PDF',
-      title: `${tag}_${moment().format('MM-DD-YYYY')}`
+      text: '<i class="fa fa-download"></i> Download as PDF',
+      title: `office_${moment().format('MM-DD-YYYY')}`,
+      exportOptions: {
+        columns: ':visible',
+        search: 'applied',
+        order: 'applied'
+      }
     }],
     columns: [{
         data: 'gene_link'
@@ -93,6 +99,12 @@ function generateDataTable(snp_array, tag) {
       },
       {
         data: 'summary'
+      },
+      {
+        data: 'tag'
+      },
+      {
+        data: 'snp'
       }
     ],
     aaSorting: [1, "desc"]
@@ -140,9 +152,7 @@ function initCreationTimeVar(timestamp) {
 }
 
 function initTableSpinner() {
-  TAG_FILTERS.forEach(function(entry) {
-    $(`#table-${entry}-placeholder`).html(`<i class="fa fa-spin fa-spinner" style="font-size: 40px;text-align: center;width: 50%;"></i>`);
-  });
+  $(`#content-placeholder`).html(`<i class="fa fa-spin fa-spinner" style="font-size: 40px;text-align: center;width: 50%;"></i>`);
 }
 
 function initForWhoModal() {

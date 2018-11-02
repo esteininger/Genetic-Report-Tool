@@ -1,0 +1,80 @@
+{% include 'fixed/head.html' %}
+<link rel="stylesheet" type="text/css" href="../static/css/office.css" />
+<link rel="stylesheet" type="text/css" href="../static/vendor/tagsinput/tagsinput.css" />
+
+
+<body>
+  {% include 'fixed/nav.html' %}
+  <div class="section md-padding bg-grey">
+    <div class="container">
+      <a class="bolded" href="/"><i class="fa fa-angle-left"></i>  Go Home</a>
+      <div class="card-box">
+        <h4 class="m-t-0 header-title"><b>Custom Report Builder</b></h4>
+        <p class="text-muted m-b-30 font-13">
+          We need a couple details in order to create a custom report generation link for your office website.
+        </p>
+        <form id="office-form" class="form-horizontal" role="form">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-md-2 control-label">Name</label>
+                <div class="col-md-10">
+                  <input required name="name" type="text" class="form-control" placeholder="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label" for="example-email">Keywords</label>
+                <div class="col-md-10">
+                  <select name="keywords" id="keyword-search" rows="3" multiple data-role="tagsinput" placeholder="Add gene keywords"></select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">Email</label>
+                <div class="col-md-10">
+                  <input required name="email" type="text" class="form-control" placeholder="john@dermatology.com">
+                </div>
+              </div>
+            </div>
+
+          <!-- second column -->
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label class="col-md-2 control-label">Specialty</label>
+                <div class="col-md-10">
+                  <input required name="specialty" type="text" class="form-control" placeholder="Dermatologist, Nutritionist, Oncologist etc.">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label">Genes</label>
+                <div class="col-md-10">
+                  <textarea id="genes-placeholder" class="form-control" disabled style="height:6em;"></textarea>
+                  <input id="genes-hidden" name="genes" type="hidden">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Password</label>
+                <div class="col-sm-10">
+                  <input required name="password" type="password" class="form-control" placeholder="********">
+                </div>
+              </div>
+            </div>
+            <button type="submit" style="float:right;margin-top:2em;margin-right: 1em;" class="btn btn-custom waves-effect waves-light btn-md">Get Upload Code</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% include 'fixed/footer.html' %}
+</body>
+
+{% include 'modules/modals.html' %}
+
+
+</html>
+
+{% include 'fixed/foot.html' %}
+
+<!--Form Wizard-->
+<script src="../static/vendor/tagsinput/tagsinput.js" type="text/javascript"></script>
+<script src="../static/js/office.js" type="text/javascript"></script>

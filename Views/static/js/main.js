@@ -1,6 +1,7 @@
 //GLOBAL VARS:
 var FOR_WHO_PARA = getParameterByName('for');
 var TAG_FILTERS = ['beneficial', 'noteworthy', 'acmg'];
+var CURRENT_URL = window.location.href;
 
 // Btn nav collapse
 $('#nav .nav-collapse').on('click', function() {
