@@ -46,11 +46,11 @@ function generateDataTable(snp_array) {
   <table id="table-genes" class="table table-striped table-bordered">
      <thead>
          <tr>
-             <th>Gene</th>
-             <th>Significance</th>
-             <th>Summary</th>
-             <th>Keyword</th>
-             <th>SNP</th>
+             <th data-toggle="tooltip" data-placement="top" data-original-title="The gene name">Gene</th>
+             <th data-toggle="tooltip" data-placement="top" data-original-title="How confident researchers are that this correlates to physical manifestation with 10 as max">Significance</th>
+             <th data-toggle="tooltip" data-placement="top" data-original-title="Summary">Summary</th>
+             <th data-toggle="tooltip" data-placement="top" data-original-title="Keyword">Keyword</th>
+             <th data-toggle="tooltip" data-placement="top" data-original-title="Single Nucleotide Polymorphism">SNP</th>
          </tr>
         </thead>
  </table>
@@ -107,7 +107,12 @@ function generateDataTable(snp_array) {
         data: 'snp'
       }
     ],
-    aaSorting: [1, "desc"]
+    aaSorting: [1, "desc"],
+    initComplete: function(settings) {
+      $('[data-toggle="tooltip"]').tooltip({
+        "container": 'body'
+      });
+    }
   });
 }
 
@@ -180,6 +185,10 @@ function initForWhoModal() {
     });
     return false;
   })
+}
+
+function initToolTips(){
+  $('[data-toggle="tooltip"]').tooltip();
 }
 
 //Run before load:
