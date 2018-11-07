@@ -8,31 +8,6 @@ from time import time
 
 mod = Blueprint('report_routes', __name__)
 
-# @mod.route('/api/report/genes', methods=['GET'])
-# def retrieve_genes():
-# 	master_list = []
-# 	genes_collections = ['acmg', 'noteworthy']
-#
-# 	for collection in genes_collections:
-# 		init = ReportDB(collection=collection)
-# 		query = init.search_db(query={})
-# 		each_gene = init.return_as_json(query)['response']
-# 		for gene in each_gene:
-# 			m = {}
-# 			m['tag'] = collection
-# 			m['gene'] = gene['gene']
-#
-# 			try:
-# 				m['description'] = gene['description']
-#
-# 			except:
-# 				m['description'] = ''
-#
-# 			master_list.append(m)
-#
-# 	return success_response(master_list)
-
-
 @mod.route('/api/report/generate', methods=['POST'])
 def generate_report():
     # get office param
@@ -62,16 +37,16 @@ def generate_report():
 
         # if office param not passed use a test office_id
         if office_id is None:
-            office_id = 'b81f3130-dd1d-11e8-83fa-784f436de059'
+            office_id = 'c4e482f6-e21f-11e8-9ada-d20785d6bfad'
 
         office = Office(office_id=office_id)
         office_query = office.find_one()
         filters = office.get_genes_and_keywords(query=office_query)
 
         for filter in filters:
-            for gene in filter['gene']:
-                db_base_query = report_build.base_query(collection='snps', query={"gene": gene}, mag=mag)
-                master_response_list += report_build.generate_report(mag, db_base_query, keyword=filter['keyword'])
+            genes_list = filter['gene']
+            db_base_query = report_build.return_snps_from_genes(genes_list=genes_list, mag=mag)
+            master_response_list += report_build.generate_report(mag, db_base_query, keyword=filter['keyword'])
 
         report = {}
         report['report_dict'] = report_build.uniquify(master_response_list)

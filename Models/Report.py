@@ -94,18 +94,20 @@ class ReportBuild:
 		else:
 			return False
 
-	def base_query(self, collection, query, mag):
-		db_connection = ReportDB(collection)
+	def return_snps_from_genes(self, genes_list, mag):
+		print (genes_list)
+		db_connection = ReportDB('snps')
 
 		magnitude_query = {"genes": {'$elemMatch': {'magnitude': {'$gt': float(mag)}}}}
-		master_query = {"$and": [magnitude_query, query]}
+		gene_query = {"gene":{"$in":genes_list}}
+
+		master_query = {"$and": [magnitude_query, gene_query]}
 
 		results = db_connection.search_db(master_query)
 
 		return db_connection.return_as_json(results)
 
 	def generate_report(self, mag, db_base_query, keyword=None):
-		# run inside a thread and output progress bar as event stream
 		base_list = []
 		for db_snp in db_base_query['response']:
 			db_rsid = db_snp['rsid']
@@ -122,8 +124,13 @@ class ReportBuild:
 						j['mag'] = db_gene['magnitude']
 						j['summary'] = db_gene['summary']
 						j['repute'] = db_gene['repute']
-						j['tag'] = keyword
+
+						#if keyword exists
+						if keyword:
+							j['tag'] = keyword
+						else:
+							j['tag'] = 'None'
 
 						base_list.append(j)
-
+						
 		return base_list
