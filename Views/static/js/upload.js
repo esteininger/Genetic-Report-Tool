@@ -10,12 +10,16 @@ function initUploadButton() {
 function processFile(elem) {
   var formData = new FormData(elem[0]);
   var originalVal = elem.html();
+  var placeholder = $('.upload-holder');
   loadSpinner(elem, 'test', 'disable');
   initLoadText(elem)
   // appendProgressBar(elem)
-  var full_url = `/api/report/generate`
+  var source = $('#source-selector').val()
+
+  var full_url = `/api/report/generate?source=${source}`
+
   if (OFFICE_PARA) {
-    full_url += `?office=${OFFICE_PARA}`
+    full_url += `&office=${OFFICE_PARA}`
   }
 
   $.ajax({

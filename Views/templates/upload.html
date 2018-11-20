@@ -5,84 +5,37 @@
         <h4 class="header-title m-t-0 m-b-30" style="margin-bottom: 1.3em;">Generate a free report from your raw genome</h4>
         <p>Your data is anonymous and <a class="bolded" href="https://meports.com/privacy">never stored</a> on our servers unless you permit it. This report will not be used for any purpose other than your own information.</p>
       </div>
-      <ul class="nav nav-tabs upload-tabs tabs-bordered">
-        <li class="active">
-          <a href="ui-tabs.html#tab-23andme" data-toggle="tab" aria-expanded="true">
-            <!-- <span class="visible-xs"><i class="fa fa-home"></i></span> -->
-            <span class="visible-xs">23andme</span>
-            <span class="hidden-xs tab-text">23andme</span>
-          </a>
-        </li>
-        <li class="">
-          <a href="ui-tabs.html#tab-ancestry" data-toggle="tab" aria-expanded="false">
-            <span class="visible-xs">Ancestry</span>
-            <span class="hidden-xs tab-text">Ancestry</span>
-          </a>
-        </li>
-        <li class="">
-          <a href="ui-tabs.html#tab-ftdna" data-toggle="tab" aria-expanded="false">
-            <span class="visible-xs">FTDna</span>
-            <span class="hidden-xs tab-text">FTDna</span>
-          </a>
-        </li>
-        <li class="">
-          <a href="ui-tabs.html#tab-helix" data-toggle="tab" aria-expanded="false">
-            <span class="visible-xs">Helix</span>
-            <span class="hidden-xs tab-text">Helix</span>
-          </a>
-        </li>
-        <li class="">
-          <a href="ui-tabs.html#tab-other" data-toggle="tab" aria-expanded="false">
-            <span class="visible-xs">Other</span>
-            <span class="hidden-xs tab-text">Other</span>
-          </a>
-        </li>
-      </ul>
-      <div class="upload-tabs tab-content">
-        <div class="upload-tabs tab-pane active" id="tab-23andme">
-          <h4 class="m-t-0 header-title"><b>23AndMe</b></h4>
-          <div class="upload-holder">
+
+      <div class="row">
+        <div class="upload-holder">
+
+          <div class="col-md-2">
+            <select id="source-selector" name="source" class="form-control" required>
+              <option selected="true" disabled="true">Select Source</option>
+              <option value="23andme">23andme</option>
+              <option value="ancestry">Ancestry</option>
+              <option value="ftdna">FTDna</option>
+              <option value="decodeme">DecodeMe</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="col-md-10">
             <form id="upload-report-form" method="post" enctype="multipart/form-data">
               <label class="btn btn-custom">
                 <span class="fa fa-upload"></span> Upload Genome
                 <input type="file" style="display: none;" name="file">
               </label>
             </form>
-            <p style="margin-top:1em;">
-              See a sample report <a class="bolded" href="/report/2347380d-ac31-4f4a-b973-6e18ff4c05a3">here</a>
-              <!-- <br /> -->
-              <!-- Don't have a 23AndMe genome file? Download yours <a class="bolded" href="https://customercare.23andme.com/hc/en-us/articles/212196868-Accessing-and-Downloading-Your-Raw-Data">here</a> -->
-            </p>
           </div>
-          <div class="progress-holder hidden"></div>
-          <div class="results-holder hidden"></div>
-        </div>
-        <div class="upload-tabs tab-pane" id="tab-ancestry">
-          <h4 class="m-t-0 header-title"><b>Ancestry</b></h4>
-          <p>
-            We're still working on Ancestry integration.
-          </p>
-        </div>
-        <div class="upload-tabs tab-pane" id="tab-ftdna">
-          <h4 class="m-t-0 header-title"><b>FamilyTree DNA</b></h4>
-          <p>
-            We're still working on a FamilyTree DNA integration.
-          </p>
-        </div>
-        <div class="upload-tabs tab-pane" id="tab-helix">
-          <h4 class="m-t-0 header-title"><b>Helix</b></h4>
-          <p>
-            We're still working on a Helix integration..
-          </p>
-        </div>
-        <div class="upload-tabs tab-pane" id="tab-other">
-          <h4 class="m-t-0 header-title"><b>Other</b></h4>
-          <p>
-            What else?
-          </p>
         </div>
       </div>
-      <p style="padding-top:.5em; font-size:12px" >We are not doctors and the information is this report is purely for informational purposes. You will have the option to send your report to an expert of your choosing.</p>
+      <p style="margin-top:1em;">
+        See a sample report <a class="bolded" href="/report/2347380d-ac31-4f4a-b973-6e18ff4c05a3">here</a>
+        <!-- <br /> -->
+        <!-- Don't have a 23AndMe genome file? Download yours <a class="bolded" href="https://customercare.23andme.com/hc/en-us/articles/212196868-Accessing-and-Downloading-Your-Raw-Data">here</a> -->
+      </p>
+      <p style="padding-top:.5em; font-size:12px">We are not doctors and the information is this report is purely for informational purposes. You will have the option to send your report to an expert of your choosing.</p>
       <!-- <div style="padding-top:1em;">
         <button style="opacity: .7;" class="btn btn-success waves-effect w-md waves-light m-b-5" id="genes-we-look-for-button"><i class="fas fa-dna m-r-5"></i> <span>Genes We Look For</span> </button>
       </div> -->
@@ -99,25 +52,25 @@
       <div class="col-md-4 col-sm-4">
         <h4 class="change-sub">File Transmission</h4>
         <img src="../static/img/mockups/browser.svg">
-          <p>Upload your raw genome, which will be securely transmitted and temporarily stored on our server for processing. It will be deleted as soon as processing finishes</p>
+        <p>Upload your raw genome, which will be securely transmitted and temporarily stored on our server for processing. It will be deleted as soon as processing finishes</p>
       </div>
       <div class="col-md-4 col-sm-4">
         <h4 class="change-sub">Gene Comparison</h4>
         <img src="../static/img/mockups/search.svg">
-          <p>We compare your genome to a master list of genes that reputable researchers have designated as important to monitor. As research changes, so does this master list.
-          </p>
+        <p>We compare your genome to a master list of genes that reputable researchers have designated as important to monitor. As research changes, so does this master list.
+        </p>
       </div>
       <div class="col-md-4 col-sm-4">
         <h4 class="change-sub">Gene Sorting</h4>
         <img src="../static/img/mockups/analytics.svg">
-          <p>The positive matches with this master list are sorted based on magnitude, which is a measurement of how confident researchers are that this gene is linked to a trait (mind, body, health). </p>
+        <p>The positive matches with this master list are sorted based on magnitude, which is a measurement of how confident researchers are that this gene is linked to a trait (mind, body, health). </p>
       </div>
 
     </div>
   </div>
 </div>
 
-  </div>
+</div>
 </div>
 
 {% include 'modules/modals.html' %}
