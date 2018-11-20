@@ -3,23 +3,25 @@
     <div class="card-box">
       <div class="upload-tabs tabs-header">
         <h4 class="header-title m-t-0 m-b-30" style="margin-bottom: 1.3em;">Generate a free report from your raw genome</h4>
-        <p>Your data is anonymous and <a class="bolded" href="https://meports.com/privacy">never stored</a> on our servers unless you permit it. This report will not be used for any purpose other than your own information.</p>
+        <p>
+          Your data is anonymous and <a class="bolded" href="https://meports.com/privacy">never stored</a> on our servers unless you permit it. This report will not be used for any purpose other than your own information.
+        </p>
+        <p>
+          See a sample report <a class="bolded" href="/report/2347380d-ac31-4f4a-b973-6e18ff4c05a3">here</a>
+        </p>
       </div>
 
       <div class="row">
         <div class="upload-holder">
-
           <div class="col-md-2">
             <select id="source-selector" name="source" class="form-control" required>
               <option selected="true" disabled="true">Select Source</option>
               <option value="23andme">23andme</option>
               <option value="ancestry">Ancestry</option>
               <option value="ftdna">FTDna</option>
-              <option value="decodeme">DecodeMe</option>
               <option value="other">Other</option>
             </select>
           </div>
-
           <div class="col-md-10">
             <form id="upload-report-form" method="post" enctype="multipart/form-data">
               <label class="btn btn-custom">
@@ -30,11 +32,8 @@
           </div>
         </div>
       </div>
-      <p style="margin-top:1em;">
-        See a sample report <a class="bolded" href="/report/2347380d-ac31-4f4a-b973-6e18ff4c05a3">here</a>
-        <!-- <br /> -->
-        <!-- Don't have a 23AndMe genome file? Download yours <a class="bolded" href="https://customercare.23andme.com/hc/en-us/articles/212196868-Accessing-and-Downloading-Your-Raw-Data">here</a> -->
-      </p>
+      <div id="source-helper"></div>
+
       <p style="padding-top:.5em; font-size:12px">We are not doctors and the information is this report is purely for informational purposes. You will have the option to send your report to an expert of your choosing.</p>
       <!-- <div style="padding-top:1em;">
         <button style="opacity: .7;" class="btn btn-success waves-effect w-md waves-light m-b-5" id="genes-we-look-for-button"><i class="fas fa-dna m-r-5"></i> <span>Genes We Look For</span> </button>

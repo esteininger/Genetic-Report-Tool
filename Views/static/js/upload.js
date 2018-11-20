@@ -7,6 +7,33 @@ function initUploadButton() {
   });
 }
 
+function initSourceSelector() {
+  $("#source-selector").on('change', function() {
+    var source = this.value
+    updateSourceHelper(source);
+  });
+
+}
+
+function updateSourceHelper(source) {
+  var source_to_url = {
+    "23andme": "https://customercare.23andme.com/hc/en-us/articles/212196868-Accessing-and-Downloading-Your-Raw-Data",
+    "ancestry": "https://support.ancestry.com/s/article/Downloading-Raw-DNA-Data-1460089696533",
+    "ftdna": "https://www.familytreedna.com/learn/user-guide/family-finder-myftdna/download-raw-data-page/",
+    "other":""
+  }
+
+  var html;
+
+  if (source == 'other') {
+    html = `<p>Don't see your genetic testing provider? <a href="mailto:ethan@meports.com">Email us</a> and we'll make it work!</p>`
+  } else {
+    html = `<p>Don't have a ${source} genome file? Download yours <a class="bolded" href="${source_to_url[source]}">here</a></p>`
+  }
+
+  $('#source-helper').html(html);
+}
+
 function processFile(elem) {
   var formData = new FormData(elem[0]);
   var originalVal = elem.html();
@@ -77,8 +104,7 @@ function generateDataTable(data) {
 
   $(`#gene-table-placeholder`).DataTable({
     data: data,
-    columns: [
-      {
+    columns: [{
         data: 'gene'
       },
       {
@@ -129,5 +155,6 @@ function generateDataTable(data) {
 
 $(document).ready(function() {
   initUploadButton();
-  initGenesWeLookForButton()
+  initGenesWeLookForButton();
+  initSourceSelector();
 });

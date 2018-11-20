@@ -262,3 +262,10 @@ table a{
   text-align: left;
   vertical-align: middle;
 }
+
+.subtext-section{
+  margin-top:1em;
+}
+#source-helper p{
+  margin-top: .5em;
+}
