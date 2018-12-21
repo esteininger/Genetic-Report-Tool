@@ -51,6 +51,10 @@ The application requires a MongoDB connection. I've included a sample JSON for e
 
 Simply spin up a MongoDB instance and add the above JSON to get a sense of how the application works. 
 
+### Example Genome Report
+
+See 23andme_sample.csv 
+
 ### Usage
 
 1. Select your raw genome CSV source (23AndMe, Ancestry, Helix, etc.)
