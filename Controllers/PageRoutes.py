@@ -12,17 +12,6 @@ def home_page():
 def office_page():
 	return render_template("office.html")
 
-# @mod.route('/office/<id>', methods=['GET'])
-# def office_report_builder_page(id):
-# 	office_exists = False
-# 	init_office_db = DB(collection='genes')
-#
-# 	query = init_genes_db.search_db_one({"gene":id.upper()})
-# 	if query:
-# 		gene_exists = True
-#
-# 	return render_template("gene.html", office_exists=office_exists, gene=query)
-
 @mod.route('/report/<report_id>', methods=['GET'])
 def report_page(report_id):
 	report_exists = False
