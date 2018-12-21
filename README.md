@@ -25,7 +25,7 @@ Run the application:
 $ python3 manage.py
 ```
 
-### Data Reqiurements
+### Data Requirements
 
 The application requires a MongoDB connection. I've included a sample JSON for each MongoDB collection that the application relies on (a collection is analagous to tables in SQL):
 
