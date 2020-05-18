@@ -11,6 +11,8 @@ The purpose of this repository is to show you what is happening under the hood. 
 
 You can see the live website [here](https://gene.meports.com)
 
+![screenshot](https://github.com/esteininger/Genetic-Report-Tool/blob/master/misc/Screen%20Shot%202020-05-18%20at%204.37.14%20PM.png)
+
 ### Installation
 
 This Genetic Reporting Tool requires Python3 + and pip to run. 
